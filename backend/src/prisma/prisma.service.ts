@@ -10,7 +10,7 @@ export class PrismaService
   constructor() {
     const connectionString =
       process.env.DATABASE_URL ||
-      'postgresql://postgres:postgres@localhost:5433/geestock_dev';
+      'postgresql://postgres:postgres@localhost:5433/dropshipping_dev';
     const adapter = new PrismaPg({ connectionString });
     super({ adapter });
   }

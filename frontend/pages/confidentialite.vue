@@ -1,13 +1,19 @@
 <script setup lang="ts">
+import { storeConfig } from '~/config/store.config'
+
+const runtimeConfig = useRuntimeConfig()
+const siteUrl = runtimeConfig.public.siteUrl || storeConfig.storeUrl
+const siteDomain = storeConfig.storeUrl.replace('https://', '')
+
 useSeoMeta({
-  title: 'Politique de Confidentialité - ClipBag',
-  description: 'Politique de confidentialité et de protection des données personnelles du site ClipBag.fr - RGPD.',
-  ogTitle: 'Politique de Confidentialité - ClipBag',
-  ogDescription: 'Protection de vos données personnelles sur ClipBag.fr',
+  title: `Politique de Confidentialité - ${storeConfig.storeName}`,
+  description: `Politique de confidentialité et de protection des données personnelles du site ${siteDomain} - RGPD.`,
+  ogTitle: `Politique de Confidentialité - ${storeConfig.storeName}`,
+  ogDescription: `Protection de vos données personnelles sur ${siteDomain}`,
 })
 
 useHead({
-  link: [{ rel: 'canonical', href: `https://clipbag.shop${useRoute().path}` }],
+  link: [{ rel: 'canonical', href: `${siteUrl}${useRoute().path}` }],
 })
 </script>
 
@@ -33,7 +39,7 @@ useHead({
         <section>
           <h2 class="font-display font-bold text-xl text-white mb-4">1. Introduction</h2>
           <p>
-            La présente politique de confidentialité décrit comment <strong class="text-white">ClipBag</strong> collecte, utilise et protège vos données personnelles conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés.
+            La présente politique de confidentialité décrit comment <strong class="text-white">{{ storeConfig.storeName }}</strong> collecte, utilise et protège vos données personnelles conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés.
           </p>
         </section>
 
@@ -113,7 +119,7 @@ useHead({
           </ul>
           <p class="mt-3">
             Pour exercer vos droits, contactez-nous à :
-            <a href="mailto:contact@clipbag.shop" class="text-brand hover:text-brand-light transition-colors">contact@clipbag.shop</a>
+            <a :href="`mailto:${storeConfig.contactEmail}`" class="text-brand hover:text-brand-light transition-colors">{{ storeConfig.contactEmail }}</a>
           </p>
           <p class="mt-3">
             Vous pouvez également introduire une réclamation auprès de la CNIL :

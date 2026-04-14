@@ -1,5 +1,5 @@
 {
-  "name": "geestock-dropshipping",
+  "name": "dropshipping-template",
   "private": true,
   "scripts": {
     "dev:backend": "cd backend && npm run start:dev",

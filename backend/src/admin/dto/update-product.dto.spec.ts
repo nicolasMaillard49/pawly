@@ -5,7 +5,7 @@ import { UpdateProductDto } from './update-product.dto';
 describe('UpdateProductDto', () => {
   it('should accept valid product data', async () => {
     const dto = plainToInstance(UpdateProductDto, {
-      name: 'ClipBag',
+      name: 'Mon Produit',
       price: 29.99,
       description: 'A magnetic bag',
     });

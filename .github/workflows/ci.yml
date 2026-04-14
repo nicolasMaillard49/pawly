@@ -13,7 +13,7 @@ jobs:
       postgres:
         image: postgres:16-alpine
         env:
-          POSTGRES_DB: geestock_test
+          POSTGRES_DB: dropshipping_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         ports:

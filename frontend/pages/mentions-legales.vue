@@ -1,13 +1,19 @@
 <script setup lang="ts">
+import { storeConfig } from '~/config/store.config'
+
+const runtimeConfig = useRuntimeConfig()
+const siteUrl = runtimeConfig.public.siteUrl || storeConfig.storeUrl
+const siteDomain = storeConfig.storeUrl.replace('https://', '')
+
 useSeoMeta({
-  title: 'Mentions Légales - ClipBag',
-  description: 'Mentions légales du site ClipBag.fr - Informations sur l\'éditeur, l\'hébergeur et les conditions d\'utilisation.',
-  ogTitle: 'Mentions Légales - ClipBag',
-  ogDescription: 'Mentions légales du site ClipBag.fr',
+  title: `Mentions Légales - ${storeConfig.storeName}`,
+  description: `Mentions légales du site ${siteDomain} - Informations sur l'éditeur, l'hébergeur et les conditions d'utilisation.`,
+  ogTitle: `Mentions Légales - ${storeConfig.storeName}`,
+  ogDescription: `Mentions légales du site ${siteDomain}`,
 })
 
 useHead({
-  link: [{ rel: 'canonical', href: `https://clipbag.shop${useRoute().path}` }],
+  link: [{ rel: 'canonical', href: `${siteUrl}${useRoute().path}` }],
 })
 </script>
 
@@ -33,16 +39,11 @@ useHead({
         <section>
           <h2 class="font-display font-bold text-xl text-white mb-4">1. Éditeur du site</h2>
           <p>
-            Le site <strong class="text-white">clipbag.shop</strong> est édité par :<br />
-            <strong class="text-white">NMF Agence</strong><br />
-            Entrepreneur individuel<br />
-            Siège social : 1 rue Marguerin, 75014 Paris, France<br />
-            SIREN : 102 905 379<br />
-            SIRET : 102 905 379 00016<br />
-            Code APE : 6201Z – Programmation informatique<br />
-            TVA : Non applicable, article 293 B du CGI<br />
-            Directeur de la publication : NMF Agence<br />
-            Contact : <a href="mailto:contact@clipbag.shop" class="text-brand hover:text-brand-light transition-colors">contact@clipbag.shop</a>
+            Le site <strong class="text-white">{{ siteDomain }}</strong> est édité par :<br />
+            <strong class="text-white">{{ storeConfig.legal.companyName }}</strong><br />
+            Siège social : {{ storeConfig.legal.address }}<br />
+            Directeur de la publication : {{ storeConfig.legal.director }}<br />
+            Contact : <a :href="`mailto:${storeConfig.contactEmail}`" class="text-brand hover:text-brand-light transition-colors">{{ storeConfig.contactEmail }}</a>
           </p>
         </section>
 
@@ -51,9 +52,7 @@ useHead({
           <h2 class="font-display font-bold text-xl text-white mb-4">2. Hébergeur</h2>
           <p>
             Le site est hébergé par :<br />
-            OVH SAS<br />
-            2 rue Kellermann, 59100 Roubaix, France<br />
-            <a href="https://www.ovhcloud.com" target="_blank" rel="noopener noreferrer" class="text-brand hover:text-brand-light transition-colors">www.ovhcloud.com</a>
+            {{ storeConfig.legal.host }}
           </p>
         </section>
 
@@ -74,7 +73,7 @@ useHead({
           </p>
           <p class="mt-3">
             Pour exercer ces droits ou pour toute question relative à la protection de vos données, contactez-nous à :
-            <a href="mailto:contact@clipbag.shop" class="text-brand hover:text-brand-light transition-colors">contact@clipbag.shop</a>
+            <a :href="`mailto:${storeConfig.contactEmail}`" class="text-brand hover:text-brand-light transition-colors">{{ storeConfig.contactEmail }}</a>
           </p>
           <p class="mt-3">
             Pour en savoir plus, consultez notre

@@ -15,7 +15,7 @@
           to="/"
           class="text-text font-display font-bold text-xl sm:text-2xl uppercase tracking-wider cursor-pointer select-none transition-colors duration-200 hover:text-text/70"
         >
-          CLIPBAG
+          {{ storeConfig.storeName }}
         </NuxtLink>
 
         <!-- Desktop nav links -->
@@ -144,6 +144,8 @@
 </template>
 
 <script setup lang="ts">
+import { storeConfig } from '~/config/store.config'
+
 const navRef = ref<HTMLElement | null>(null)
 const scrolled = ref(false)
 const mobileOpen = ref(false)

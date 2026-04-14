@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { Resend } from 'resend';
 import { orderConfirmationTemplate } from './templates/order-confirmation';
 import { shippingNotificationTemplate } from './templates/shipping-notification';
+import { storeConfig, formatOrderNumber } from '../config/store.config';
 
 export interface OrderEmailData {
   orderNumber: number;
@@ -36,18 +37,21 @@ export class EmailService {
   constructor(private configService: ConfigService) {
     const apiKey = this.configService.get('RESEND_API_KEY');
     this.resend = new Resend(apiKey || 'missing_key');
-    this.from = this.configService.get('EMAIL_FROM') || 'ClipBag <onboarding@resend.dev>';
+    this.from = storeConfig.emailFrom;
   }
 
   async sendOrderConfirmation(data: OrderEmailData) {
+    const orderNum = formatOrderNumber(data.orderNumber);
+    const storeInfo = { storeName: storeConfig.storeName, storeUrl: storeConfig.storeUrl, orderNum };
+
     // 1. Email client
     try {
       this.logger.log(`Sending order confirmation from="${this.from}" to="${data.customerEmail}"`);
       const result = await this.resend.emails.send({
         from: this.from,
         to: data.customerEmail,
-        subject: `Commande confirmee #GS-${String(data.orderNumber).padStart(5, '0')}`,
-        html: orderConfirmationTemplate(data),
+        subject: `Commande confirmee #${orderNum}`,
+        html: orderConfirmationTemplate(data, storeInfo),
       });
       this.logger.log(`Resend response: ${JSON.stringify(result)}`);
       this.logger.log(`Order confirmation sent to ${data.customerEmail} (${result.data?.id})`);
@@ -70,14 +74,14 @@ export class EmailService {
         await this.resend.emails.send({
           from: this.from,
           to: adminEmail,
-          subject: `🛒 Nouvelle commande #GS-${String(data.orderNumber).padStart(5, '0')} — ${data.total.toFixed(2)}€`,
+          subject: `🛒 Nouvelle commande #${orderNum} — ${data.total.toFixed(2)}€`,
           html: `
             <h2>Nouvelle commande !</h2>
             <p><strong>Client :</strong> ${data.customerName} (${data.customerEmail})</p>
             <p><strong>Articles :</strong><br/>${itemsList.replace(/\n/g, '<br/>')}</p>
             <p><strong>Total :</strong> ${data.total.toFixed(2)}€</p>
             <p><strong>Adresse :</strong> ${addrStr}</p>
-            <p><a href="https://clipbag.shop/admin/orders">Voir dans le dashboard</a></p>
+            <p><a href="${storeConfig.adminDashboardUrl}">Voir dans le dashboard</a></p>
           `,
         });
         this.logger.log(`Admin notification sent to ${adminEmail}`);
@@ -88,12 +92,15 @@ export class EmailService {
   }
 
   async sendShippingNotification(data: ShippingEmailData) {
+    const orderNum = formatOrderNumber(data.orderNumber);
+    const storeInfo = { storeName: storeConfig.storeName, storeUrl: storeConfig.storeUrl, orderNum };
+
     try {
       const result = await this.resend.emails.send({
         from: this.from,
         to: data.customerEmail,
-        subject: `Votre commande #GS-${String(data.orderNumber).padStart(5, '0')} a ete expediee !`,
-        html: shippingNotificationTemplate(data),
+        subject: `Votre commande #${orderNum} a ete expediee !`,
+        html: shippingNotificationTemplate(data, storeInfo),
       });
       this.logger.log(`Shipping notification sent to ${data.customerEmail} (${result.data?.id})`);
       return result;

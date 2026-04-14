@@ -16,7 +16,7 @@
       </div>
 
       <!-- ===== Mobile / Tablet: horizontal carousel ===== -->
-      <div class="carousel" role="region" aria-label="Fonctionnalités ClipBag">
+      <div class="carousel" role="region" :aria-label="`Fonctionnalités ${storeConfig.storeName}`">
         <div
           v-for="(item, idx) in items"
           :key="'m-' + idx"
@@ -76,7 +76,7 @@
       <!-- Bottom CTA -->
       <div class="cta">
         <button type="button" class="cta__btn" @click="scrollToOrder">
-          Découvrir ClipBag
+          Découvrir {{ storeConfig.storeName }}
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
@@ -89,37 +89,15 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { storeConfig } from '~/config/store.config'
 
-const items = [
-  {
-    problem: 'Désordre total',
-    pain: 'Affaires en vrac, poches pleines, rien à sa place.',
-    solution: 'Range gourde + essentiels dans le Kit Bag. Tout accessible en 1 seconde.',
-    image: '/images/product/product-4.png',
-    alt: 'ClipBag ouvert avec gourde, téléphone et accessoires rangés',
-  },
-  {
-    problem: 'Tu cherches toujours tes affaires',
-    pain: 'Téléphone, gourde, clés… toujours en train de fouiller.',
-    solution: 'Fixation magnétique sur toute surface métallique. Tout visible, tout accessible.',
-    image: '/images/product/product-6.png',
-    alt: 'ClipBag fixé magnétiquement sur un rack de musculation',
-  },
-  {
-    problem: 'Toujours une main prise',
-    pain: 'Chiant pour bouger, s\'entraîner, enchaîner.',
-    solution: 'Bandoulière intégrée, mains libres. Focus 100% sur ta perf.',
-    image: '/images/product/product-3.png',
-    alt: 'ClipBag porté en bandoulière, mains libres',
-  },
-  {
-    problem: 'Ta bouteille traîne partout',
-    pain: 'Au sol, pas hygiénique, toujours dans le passage.',
-    solution: 'Fixe-la en hauteur sur n\'importe quel support métallique. Propre et accessible.',
-    image: '/images/product/product-7.png',
-    alt: 'ClipBag suspendu en hauteur avec gourde et téléphone',
-  },
-]
+const items = storeConfig.problems.map((p) => ({
+  problem: p.pain,
+  pain: p.pain,
+  solution: p.solution,
+  image: p.image,
+  alt: p.alt,
+}))
 
 const activeIndex = ref(0)
 let observer: IntersectionObserver | null = null

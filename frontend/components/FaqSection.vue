@@ -75,13 +75,13 @@
             Notre équipe est là pour vous aider. N'hésitez pas à nous contacter.
           </p>
           <a
-            href="mailto:contact@clipbag.shop"
+            :href="`mailto:${storeConfig.contactEmail}`"
             class="inline-flex items-center gap-2 bg-white border border-border hover:border-accent/30 text-text font-display font-semibold py-3 px-6 rounded-xl transition-all duration-200 cursor-pointer hover:bg-surface-alt group"
           >
             <svg class="w-5 h-5 text-accent-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            contact@clipbag.shop
+            {{ storeConfig.contactEmail }}
             <svg class="w-4 h-4 text-text-muted group-hover:text-accent-dark transition-colors duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
@@ -93,44 +93,15 @@
 </template>
 
 <script setup lang="ts">
+import { storeConfig } from '~/config/store.config'
+
 const openIndex = ref<number | null>(null)
 
 const toggle = (idx: number) => {
   openIndex.value = openIndex.value === idx ? null : idx
 }
 
-const faqs = [
-  {
-    question: 'Combien de temps dure la livraison ?',
-    answer:
-      'La livraison prend entre 5 et 7 jours ouvrés. Vous recevrez un numéro de suivi par email dès l\'expédition de votre commande. La livraison est offerte en France métropolitaine.',
-  },
-  {
-    question: 'Est-ce compatible avec ma bouteille ?',
-    answer:
-      'Le ClipBag est compatible avec toutes les bouteilles standard (de 500ml à 1L). Son design universel s\'adapte à la grande majorité des bouteilles du marché, y compris les gourdes isothermes.',
-  },
-  {
-    question: 'La fixation magnétique est-elle solide ?',
-    answer:
-      'Absolument. Nos aimants néodyme ultra-puissants garantissent une fixation ferme et sécurisée, même pendant les activités sportives intenses. Votre bouteille ne bougera pas, que ce soit en course, à vélo ou en escalade.',
-  },
-  {
-    question: 'Puis-je retourner le produit ?',
-    answer:
-      'Bien sûr. Nous offrons une garantie satisfait ou remboursé de 30 jours. Si le produit ne vous convient pas, renvoyez-le et nous vous rembourserons intégralement, sans poser de questions.',
-  },
-  {
-    question: 'Le paiement est-il sécurisé ?',
-    answer:
-      'Oui, le paiement est 100% sécurisé via Stripe, le leader mondial du paiement en ligne. Vos données bancaires sont chiffrées (TLS) et ne sont jamais stockées sur nos serveurs.',
-  },
-  {
-    question: 'Quelle est la capacité de poids maximale ?',
-    answer:
-      'Le ClipBag supporte facilement des bouteilles jusqu\'à 1,5L remplies. Les aimants néodyme sont dimensionnés pour supporter largement ce poids avec une marge de sécurité confortable.',
-  },
-]
+const faqs = storeConfig.faq
 
 useHead({
   script: [

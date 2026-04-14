@@ -25,7 +25,7 @@
               >
                 <img
                   :src="img"
-                  alt="ClipBag Sac Magnétique pour Bouteille"
+                  :alt="storeConfig.hero.imageAlt"
                   class="w-full h-full object-cover object-[center_55%] rounded-2xl"
                   :fetchpriority="i === 0 ? 'high' : 'auto'"
                   :loading="i < 2 ? 'eager' : 'lazy'"
@@ -43,7 +43,7 @@
               >
                 <img
                   :src="img"
-                  :alt="`ClipBag vue ${i + 1}`"
+                  :alt="`${storeConfig.storeName} vue ${i + 1}`"
                   class="w-full h-full object-contain"
                   loading="lazy"
                 />
@@ -65,7 +65,7 @@
               >
                 <img
                   :src="img"
-                  :alt="`ClipBag vue ${i + 1}`"
+                  :alt="`${storeConfig.storeName} vue ${i + 1}`"
                   class="w-full h-full object-contain rounded-sm"
                   loading="lazy"
                 />
@@ -82,7 +82,7 @@
                     <img
                       :key="currentImageIndex"
                       :src="productImages[currentImageIndex]"
-                      alt="ClipBag Sac Magnétique pour Bouteille"
+                      :alt="storeConfig.hero.imageAlt"
                       class="absolute inset-0 w-full h-full rounded-2xl object-cover"
                       fetchpriority="high"
                       loading="eager"
@@ -176,14 +176,14 @@
                   @click="selectBundle(bundle.id)"
                 >
                   <span v-if="bundle.slug === 'complet'" class="absolute -top-2.5 right-3 bg-accent text-white text-[11px] font-display font-semibold px-2 py-0.5 rounded-full">Populaire</span>
-                  <!-- Title row: label + 1x ClipBag + badge + price -->
+                  <!-- Title row: label + 1x product + badge + price -->
                   <div class="flex items-center justify-between w-full">
                     <div class="flex items-center gap-2">
                       <span :class="['w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0', selectedBundleId === bundle.id ? 'border-accent-dark' : 'border-border']">
                         <span v-if="selectedBundleId === bundle.id" class="w-2 h-2 rounded-full bg-accent-dark" />
                       </span>
                       <span class="text-text font-display font-semibold text-sm sm:text-base">{{ bundle.label }}</span>
-                      <span class="text-text-muted text-xs">1x {{ productStore.product?.name?.split(' - ')[0] || 'ClipBag' }}</span>
+                      <span class="text-text-muted text-xs">1x {{ productStore.product?.name?.split(' - ')[0] || storeConfig.storeName }}</span>
                       <span v-if="bundle.badge" class="text-urgency text-xs font-display font-bold uppercase">{{ bundle.badge }}</span>
                     </div>
                     <div class="flex items-baseline gap-1.5">
@@ -464,47 +464,11 @@
                 >
                   <div v-if="showDescription" class="overflow-hidden">
                     <div class="px-4 pb-4 pt-1 space-y-2.5">
-                      <div class="flex items-start gap-2.5">
+                      <div v-for="(benefit, idx) in storeConfig.benefits" :key="idx" class="flex items-start gap-2.5">
                         <svg class="w-4 h-4 text-accent-dark flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
-                        <span class="text-text text-xs sm:text-sm leading-snug">Système de <strong>fixation magnétique</strong> — s'accroche instantanément à toute surface métallique</span>
-                      </div>
-                      <div class="flex items-start gap-2.5">
-                        <svg class="w-4 h-4 text-accent-dark flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                        </svg>
-                        <span class="text-text text-xs sm:text-sm leading-snug">Tissu <strong>100% imperméable</strong> — protège vos affaires en toutes conditions</span>
-                      </div>
-                      <div class="flex items-start gap-2.5">
-                        <svg class="w-4 h-4 text-accent-dark flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
-                        </svg>
-                        <span class="text-text text-xs sm:text-sm leading-snug">Poche <strong>téléphone</strong> dédiée et sécurisée</span>
-                      </div>
-                      <div class="flex items-start gap-2.5">
-                        <svg class="w-4 h-4 text-accent-dark flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
-                        </svg>
-                        <span class="text-text text-xs sm:text-sm leading-snug">Compartiment <strong>portefeuille</strong> et <strong>écouteurs</strong></span>
-                      </div>
-                      <div class="flex items-start gap-2.5">
-                        <svg class="w-4 h-4 text-accent-dark flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-                        </svg>
-                        <span class="text-text text-xs sm:text-sm leading-snug">Emplacement <strong>gourde</strong> principal — fixation <strong>aimantée</strong>, résiste à <strong>+2 kg</strong> de charge</span>
-                      </div>
-                      <div class="flex items-start gap-2.5">
-                        <svg class="w-4 h-4 text-accent-dark flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
-                        <span class="text-text text-xs sm:text-sm leading-snug"><strong>Bandoulière résistante</strong> intégrée pour un transport optimal</span>
-                      </div>
-                      <div class="flex items-start gap-2.5">
-                        <svg class="w-4 h-4 text-accent-dark flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.97zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.97z" />
-                        </svg>
-                        <span class="text-text text-xs sm:text-sm leading-snug">Ultra léger — seulement <strong>120g</strong></span>
+                        <span class="text-text text-xs sm:text-sm leading-snug"><strong>{{ benefit.title }}</strong> — {{ benefit.description }}</span>
                       </div>
                     </div>
                   </div>
@@ -544,7 +508,7 @@
             </div>
             <span class="trust-marquee__sep">&bull;</span>
             <div class="trust-marquee__item">
-              <a href="https://fr.trustpilot.com/review/clipbag.shop" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5">
+              <a :href="storeConfig.social.trustpilot || '#'" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5">
                 <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none">
                   <path d="M12 1.5l2.76 8.5h8.94l-7.23 5.26 2.76 8.5L12 18.5l-7.23 5.26 2.76-8.5L.3 10h8.94L12 1.5z" fill="#00B67A" />
                 </svg>
@@ -561,6 +525,8 @@
 </template>
 
 <script setup lang="ts">
+import { storeConfig } from '~/config/store.config'
+
 const productStore = useProductStore()
 const { track: fbTrack } = useMetaPixel()
 
@@ -685,8 +651,8 @@ const selectBundle = (id: string) => {
 const decrementQuantity = () => { if (!currentBundle.value && quantity.value > 1) quantity.value-- }
 const incrementQuantity = () => { if (!currentBundle.value && quantity.value < 10) quantity.value++ }
 
-const unitPrice = computed(() => productStore.product?.price || 29.99)
-const originalUnitPrice = computed(() => productStore.product?.comparePrice || 49.99)
+const unitPrice = computed(() => productStore.product?.price || storeConfig.product.defaultPrice)
+const originalUnitPrice = computed(() => productStore.product?.comparePrice || storeConfig.product.originalPrice)
 
 const formattedTotal = computed(() => {
   const total = currentBundle.value ? currentBundle.value.price : unitPrice.value * quantity.value
@@ -710,7 +676,7 @@ const handleCheckout = async () => {
   error.value = ''
   try {
     const totalValue = currentBundle.value ? currentBundle.value.price : unitPrice.value * quantity.value
-    const pixelParams = { content_name: currentBundle.value?.label || productStore.product?.name || 'ClipBag', content_ids: [currentBundle.value?.id || productStore.product?.id || ''], content_type: 'product', num_items: quantity.value, value: totalValue, currency: 'EUR' }
+    const pixelParams = { content_name: currentBundle.value?.label || productStore.product?.name || storeConfig.storeName, content_ids: [currentBundle.value?.id || productStore.product?.id || ''], content_type: 'product', num_items: quantity.value, value: totalValue, currency: 'EUR' }
     fbTrack('AddToCart', pixelParams)
     fbTrack('InitiateCheckout', pixelParams)
     const { apiFetch } = useApi()

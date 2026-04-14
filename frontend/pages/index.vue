@@ -30,12 +30,17 @@
 </template>
 
 <script setup lang="ts">
+import { storeConfig } from '~/config/store.config'
+
+const runtimeConfig = useRuntimeConfig()
+const siteUrl = runtimeConfig.public.siteUrl || storeConfig.storeUrl
+
 useSeoMeta({
-  title: 'ClipBag - Le Sac Magnétique pour Bouteille | Libérez Vos Mains',
-  ogTitle: 'ClipBag - Le Sac Magnétique pour Bouteille',
-  description: 'Le sac magnétique révolutionnaire pour vos bouteilles d\'eau. Fixation instantanée, ultra léger (120g), compatible toutes bouteilles. Livraison gratuite. -40% en ce moment.',
-  ogDescription: 'Plus jamais les mains encombrées pendant le sport. Découvrez le sac magnétique ClipBag - Fixation instantanée, 120g seulement. 29,99 EUR au lieu de 49,99 EUR.',
-  ogImage: 'https://clipbag.shop/og.png',
+  title: `${storeConfig.storeName} - ${storeConfig.product.tagline}`,
+  ogTitle: `${storeConfig.storeName} - ${storeConfig.product.tagline}`,
+  description: storeConfig.product.description,
+  ogDescription: storeConfig.product.description,
+  ogImage: `${siteUrl}/og.png`,
   ogType: 'website',
   ogLocale: 'fr_FR',
   twitterCard: 'summary_large_image',
@@ -46,7 +51,7 @@ useHead({
     lang: 'fr',
     class: 'scroll-smooth',
   },
-  link: [{ rel: 'canonical', href: 'https://clipbag.shop' }],
+  link: [{ rel: 'canonical', href: siteUrl }],
 })
 
 const productStore = useProductStore()

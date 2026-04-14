@@ -1,13 +1,18 @@
 <script setup lang="ts">
+import { storeConfig } from '~/config/store.config'
+
+const runtimeConfig = useRuntimeConfig()
+const siteUrl = runtimeConfig.public.siteUrl || storeConfig.storeUrl
+
 useSeoMeta({
-  title: 'Suivi de commande - ClipBag',
-  description: 'Suivez votre commande ClipBag en temps réel. Entrez votre numéro de commande ou vos coordonnées.',
-  ogTitle: 'Suivi de commande - ClipBag',
-  ogDescription: 'Suivez votre commande ClipBag en temps réel.',
+  title: `Suivi de commande - ${storeConfig.storeName}`,
+  description: `Suivez votre commande ${storeConfig.storeName} en temps réel. Entrez votre numéro de commande ou vos coordonnées.`,
+  ogTitle: `Suivi de commande - ${storeConfig.storeName}`,
+  ogDescription: `Suivez votre commande ${storeConfig.storeName} en temps réel.`,
 })
 
 useHead({
-  link: [{ rel: 'canonical', href: `https://clipbag.shop${useRoute().path}` }],
+  link: [{ rel: 'canonical', href: `${siteUrl}${useRoute().path}` }],
 })
 
 const { apiFetch } = useApi()
@@ -71,7 +76,7 @@ function getEstimatedDate(o: any, index: number) {
 }
 
 function formatOrderNumber(num: number) {
-  return `GS-${String(num).padStart(5, '0')}`
+  return `${storeConfig.orderPrefix}-${String(num).padStart(5, '0')}`
 }
 
 function selectOrder(o: any) {

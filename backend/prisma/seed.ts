@@ -5,16 +5,16 @@ import * as bcrypt from 'bcrypt';
 
 const connectionString =
   process.env.DATABASE_URL ||
-  'postgresql://postgres:postgres@localhost:5433/geestock_dev';
+  'postgresql://postgres:postgres@localhost:5433/dropshipping_dev';
 const adapter = new PrismaPg({ connectionString });
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
   // Seed main product
-  const clipbag = await prisma.product.upsert({
-    where: { slug: 'clipbag-magnetic-bottle-bag' },
+  const product = await prisma.product.upsert({
+    where: { slug: 'default-product' },
     update: {
-      name: 'ClipBag',
+      name: 'Mon Produit',
       images: [
         '/images/product/product-1.png',
         '/images/product/product-2.png',
@@ -25,10 +25,10 @@ async function main() {
       ],
     },
     create: {
-      name: 'ClipBag',
-      slug: 'clipbag-magnetic-bottle-bag',
+      name: 'Mon Produit',
+      slug: 'default-product',
       description:
-        "Le sac magnétique révolutionnaire pour vos bouteilles d'eau. Conçu pour les sportifs et aventuriers, il se fixe instantanément grâce à sa technologie magnétique puissante. Libérez vos mains pendant vos séances de sport, randonnées ou déplacements quotidiens.",
+        'Description du produit principal. Modifiez ce texte pour decrire votre produit.',
       price: 29.99,
       comparePrice: 49.99,
       costPrice: 0,
@@ -59,7 +59,7 @@ async function main() {
     create: {
       name: 'Shaker',
       slug: 'shaker-sport',
-      description: 'Shaker sport inclus dans les packs premium.',
+      description: 'Accessoire inclus dans les packs premium.',
       price: 0,
       costPrice: 0,
       images: ['/images/product/shaker.png'],
@@ -73,7 +73,7 @@ async function main() {
     create: {
       name: 'Élastique',
       slug: 'elastique-fitness',
-      description: 'Élastique de résistance inclus dans le Kit Complet.',
+      description: 'Accessoire inclus dans le pack complet.',
       price: 0,
       costPrice: 0,
       images: ['/images/product/elastic.png'],
@@ -87,7 +87,7 @@ async function main() {
     create: {
       name: 'Serviette',
       slug: 'serviette-sport',
-      description: 'Petite serviette sport incluse dans le Kit Complet.',
+      description: 'Accessoire inclus dans le pack complet.',
       price: 0,
       costPrice: 0,
       images: ['/images/product/servitte.png'],
@@ -143,28 +143,28 @@ async function main() {
 
   await upsertBundle({
     slug: 'sport',
-    label: 'Sport',
-    description: 'ClipBag + Shaker Sport',
+    label: 'Pack Sport',
+    description: 'Produit + Shaker Sport',
     price: 39.99,
     comparePrice: 69.99,
     badge: '-43%',
     position: 1,
     items: [
-      { productId: clipbag.id, quantity: 1 },
+      { productId: product.id, quantity: 1 },
       { productId: shaker.id, quantity: 1 },
     ],
   });
 
   await upsertBundle({
     slug: 'complet',
-    label: 'Kit Complet',
-    description: 'ClipBag + Shaker + Élastique + Serviette',
+    label: 'Pack Complet',
+    description: 'Produit + Shaker + Élastique + Serviette',
     price: 49.99,
     comparePrice: 99.99,
     badge: '-50%',
     position: 2,
     items: [
-      { productId: clipbag.id, quantity: 1 },
+      { productId: product.id, quantity: 1 },
       { productId: shaker.id, quantity: 1 },
       { productId: elastique.id, quantity: 1 },
       { productId: serviette.id, quantity: 1 },
@@ -173,28 +173,28 @@ async function main() {
 
   await upsertBundle({
     slug: 'duo',
-    label: 'Duo',
-    description: '2x ClipBag',
+    label: 'Pack Duo',
+    description: '2x Produit',
     price: 49.99,
     comparePrice: 99.98,
     badge: '-50%',
     position: 3,
-    items: [{ productId: clipbag.id, quantity: 2 }],
+    items: [{ productId: product.id, quantity: 2 }],
   });
 
   await upsertBundle({
     slug: 'equipe',
-    label: 'Équipe',
-    description: '5x ClipBag',
+    label: 'Pack Pro',
+    description: '5x Produit',
     price: 99.99,
     comparePrice: 249.95,
     badge: '-60%',
     position: 4,
-    items: [{ productId: clipbag.id, quantity: 5 }],
+    items: [{ productId: product.id, quantity: 5 }],
   });
 
   // Seed admin
-  const adminEmail = process.env.ADMIN_EMAIL || 'admin@clipbag.shop';
+  const adminEmail = process.env.ADMIN_EMAIL || 'admin@store.shop';
   const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
   const passwordHash = await bcrypt.hash(adminPassword, 10);
   await prisma.admin.upsert({

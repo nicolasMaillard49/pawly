@@ -25,7 +25,7 @@
           {{ currentName }} de {{ currentCity }}
         </p>
         <p class="text-xs text-text-muted mt-0.5">
-          A commandé un ClipBag · <span class="text-accent-dark font-medium">il y a {{ currentMinutes }} min</span>
+          A commandé un {{ storeConfig.product.name }} · <span class="text-accent-dark font-medium">il y a {{ currentMinutes }} min</span>
         </p>
       </div>
 
@@ -44,6 +44,8 @@
 </template>
 
 <script setup lang="ts">
+import { storeConfig } from '~/config/store.config'
+
 const names = [
   'Thomas', 'Lucas', 'Hugo', 'Léo', 'Nathan', 'Louis', 'Jules', 'Gabriel',
   'Arthur', 'Raphaël', 'Mathis', 'Ethan', 'Noah', 'Maxime', 'Alexandre',

@@ -46,7 +46,7 @@ const adSpend = ref(250)
 const shippingCostPerOrder = ref(3)
 
 const loadProfitConfig = () => {
-  const saved = localStorage.getItem('clipbag_profit_config')
+  const saved = localStorage.getItem('store_profit_config')
   if (saved) {
     const config = JSON.parse(saved)
     adSpend.value = config.adSpend ?? 250
@@ -55,7 +55,7 @@ const loadProfitConfig = () => {
 }
 
 const saveProfitConfig = () => {
-  localStorage.setItem('clipbag_profit_config', JSON.stringify({
+  localStorage.setItem('store_profit_config', JSON.stringify({
     adSpend: adSpend.value,
     shippingCostPerOrder: shippingCostPerOrder.value,
   }))

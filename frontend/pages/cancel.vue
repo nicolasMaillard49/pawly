@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { storeConfig } from '~/config/store.config'
+
 useSeoMeta({
-  title: 'Paiement Annulé - ClipBag',
+  title: `Paiement Annulé - ${storeConfig.storeName}`,
   robots: 'noindex',
 })
 
@@ -53,7 +55,7 @@ onMounted(async () => {
         </NuxtLink>
       </div>
       <a
-        href="mailto:contact@clipbag.shop"
+        :href="`mailto:${storeConfig.contactEmail}`"
         class="inline-block mt-6 text-sm text-gray-500 hover:text-brand transition-colors duration-200 cursor-pointer"
       >
         Besoin d'aide ? Contactez-nous

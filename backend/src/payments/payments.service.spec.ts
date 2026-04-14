@@ -230,7 +230,7 @@ describe('PaymentsService', () => {
         customerName: 'Jean',
         customerEmail: 'jean@test.com',
         total: 29.99,
-        items: [{ product: { name: 'ClipBag' }, quantity: 1, price: 29.99 }],
+        items: [{ product: { name: 'Mon Produit' }, quantity: 1, price: 29.99 }],
         shippingAddress: { line1: '12 rue', city: 'Paris', postalCode: '75001' },
       });
 

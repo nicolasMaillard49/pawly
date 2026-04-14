@@ -76,7 +76,7 @@ const fetchProduct = async (id?: string) => {
     form.stripeImage = product.value.stripeImage || ''
     form.orderImage = product.value.orderImage || ''
     form.supplierUrl = product.value.supplierUrl || ''
-    const saved = localStorage.getItem('clipbag_social_videos')
+    const saved = localStorage.getItem('store_social_videos')
     if (saved) {
       form.socialVideos = JSON.parse(saved)
     }
@@ -108,7 +108,7 @@ const moveImageDown = (idx: number) => {
 const addVideo = () => { form.socialVideos.push({ url: '', title: '', thumbnail: '' }) }
 const removeVideo = (idx: number) => { form.socialVideos.splice(idx, 1) }
 const saveSocialVideos = () => {
-  localStorage.setItem('clipbag_social_videos', JSON.stringify(form.socialVideos))
+  localStorage.setItem('store_social_videos', JSON.stringify(form.socialVideos))
 }
 
 const saveProduct = async () => {

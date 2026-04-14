@@ -1,7 +1,8 @@
 import type { ShippingEmailData } from '../email.service';
+import type { StoreInfo } from './order-confirmation';
 
-export function shippingNotificationTemplate(data: ShippingEmailData): string {
-  const orderNum = `GS-${String(data.orderNumber).padStart(5, '0')}`;
+export function shippingNotificationTemplate(data: ShippingEmailData, store: StoreInfo): string {
+  const { orderNum, storeName, storeUrl } = store;
   const trackingLink = data.trackingUrl
     ? `<a href="${data.trackingUrl}" style="display: inline-block; background: #10b981; color: white; padding: 14px 32px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 16px;">Suivre mon colis</a>`
     : `<p style="background: #f9fafb; border-radius: 12px; padding: 16px; text-align: center; font-family: monospace; font-size: 18px; color: #111827; letter-spacing: 0.05em;">${data.trackingNumber}</p>`;
@@ -53,15 +54,15 @@ export function shippingNotificationTemplate(data: ShippingEmailData): string {
       <p style="color: #9ca3af; font-size: 13px; text-align: center; margin: 24px 0 0;">
         Delai de livraison estime : 5 a 7 jours ouvrables.
         <br>Vous pouvez aussi suivre votre commande sur
-        <a href="https://clipbag.shop/suivi?order=${data.orderNumber}" style="color: #10b981;">clipbag.shop/suivi</a>.
+        <a href="${storeUrl}/suivi?order=${data.orderNumber}" style="color: #10b981;">${storeUrl.replace(/^https?:\/\//, '')}/suivi</a>.
       </p>
     </div>
 
     <!-- Footer -->
     <div style="text-align: center; padding: 24px; color: #9ca3af; font-size: 12px;">
-      <p style="margin: 0;">ClipBag &mdash; Sac Magnetique pour Bouteille</p>
+      <p style="margin: 0;">${storeName}</p>
       <p style="margin: 4px 0 0;">
-        <a href="https://clipbag.shop" style="color: #10b981; text-decoration: none;">clipbag.shop</a>
+        <a href="${storeUrl}" style="color: #10b981; text-decoration: none;">${storeUrl.replace(/^https?:\/\//, '')}</a>
       </p>
     </div>
 

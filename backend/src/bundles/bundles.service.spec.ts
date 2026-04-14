@@ -24,7 +24,7 @@ describe('BundlesService', () => {
     active: true,
     position: 1,
     items: [
-      { id: 'bi-1', productId: 'prod-1', quantity: 1, product: { id: 'prod-1', name: 'ClipBag' } },
+      { id: 'bi-1', productId: 'prod-1', quantity: 1, product: { id: 'prod-1', name: 'Mon Produit' } },
       { id: 'bi-2', productId: 'prod-2', quantity: 1, product: { id: 'prod-2', name: 'Shaker' } },
     ],
   };

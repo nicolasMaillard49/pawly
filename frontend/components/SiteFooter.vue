@@ -20,10 +20,10 @@
             class="text-white font-display font-bold text-2xl uppercase tracking-wider cursor-pointer transition-colors duration-200 hover:text-gray-300 inline-block mb-4"
             @click.prevent="scrollToTop"
           >
-            CLIPBAG
+            {{ storeConfig.storeName }}
           </a>
           <p class="text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
-            Le sac magnétique révolutionnaire pour vos bouteilles. Conçu pour les sportifs exigeants.
+            {{ storeConfig.product.description }}
           </p>
           <!-- Social media links -->
           <div class="flex items-center gap-3">
@@ -62,7 +62,7 @@
             <a href="/mentions-legales" class="text-sm text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer">Mentions légales</a>
             <a href="/cgv" class="text-sm text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer">Conditions générales de vente</a>
             <a href="/confidentialite" class="text-sm text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer">Politique de confidentialité</a>
-            <a href="mailto:contact@clipbag.shop" class="text-sm text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer">Contact</a>
+            <a :href="`mailto:${storeConfig.contactEmail}`" class="text-sm text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer">Contact</a>
           </nav>
         </div>
 
@@ -139,25 +139,27 @@
         </div>
       </div>
 
-      <!-- NMF Agence credit — above separator so it's visible on mobile -->
-      <div class="text-center pb-4">
+      <!-- Agency credit — above separator so it's visible on mobile -->
+      <div v-if="storeConfig.credit?.name" class="text-center pb-4">
         <p class="text-xs text-gray-500">
           Site conçu par
           <a
-            href="https://www.nmf-agence.com"
+            v-if="storeConfig.credit?.url"
+            :href="storeConfig.credit.url"
             target="_blank"
             rel="noopener noreferrer"
             class="text-gray-400 hover:text-accent transition-colors duration-200 font-medium"
           >
-            NMF Agence
+            {{ storeConfig.credit.name }}
           </a>
+          <span v-else class="text-gray-400 font-medium">{{ storeConfig.credit.name }}</span>
         </p>
       </div>
 
       <!-- Bottom bar -->
       <div class="border-t border-white/10 py-6 pb-24 sm:pb-6 flex items-center justify-center">
         <p class="text-xs text-gray-500">
-          &copy; 2026 ClipBag. Tous droits réservés.
+          &copy; {{ new Date().getFullYear() }} {{ storeConfig.storeName }}. Tous droits réservés.
         </p>
       </div>
     </div>
@@ -165,6 +167,8 @@
 </template>
 
 <script setup lang="ts">
+import { storeConfig } from '~/config/store.config'
+
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
@@ -183,16 +187,20 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Organization',
-        name: 'ClipBag',
-        url: 'https://clipbag.shop',
-        logo: 'https://clipbag.shop/logo.png',
+        name: storeConfig.storeName,
+        url: storeConfig.storeUrl,
+        logo: `${storeConfig.storeUrl}/logo.png`,
         contactPoint: {
           '@type': 'ContactPoint',
-          email: 'contact@clipbag.shop',
+          email: storeConfig.contactEmail,
           contactType: 'customer service',
           availableLanguage: 'French',
         },
-        sameAs: [],
+        sameAs: [
+          storeConfig.social.instagram,
+          storeConfig.social.tiktok,
+          storeConfig.social.facebook,
+        ].filter(Boolean),
       }),
     },
   ],

@@ -254,7 +254,7 @@ onMounted(fetchData)
 
       <div>
         <label class="block text-[11px] font-medium text-gray-500 uppercase tracking-wider mb-1.5">Description</label>
-        <input v-model="form.description" type="text" placeholder="ClipBag + Shaker Sport" class="w-full px-3 py-2 bg-white/[0.05] border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-1 focus:ring-brand/50" />
+        <input v-model="form.description" type="text" placeholder="Produit principal + Accessoire" class="w-full px-3 py-2 bg-white/[0.05] border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-1 focus:ring-brand/50" />
       </div>
 
       <!-- Items -->

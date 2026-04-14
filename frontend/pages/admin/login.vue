@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { storeConfig } from '~/config/store.config'
+
 definePageMeta({
   layout: false,
 })
@@ -37,7 +39,7 @@ const handleLogin = async () => {
     <div class="w-full max-w-sm">
       <!-- Logo -->
       <div class="text-center mb-8">
-        <h1 class="text-3xl font-display font-bold text-white tracking-tight">CLIPBAG</h1>
+        <h1 class="text-3xl font-display font-bold text-white tracking-tight">{{ storeConfig.storeName }}</h1>
         <p class="text-sm text-gray-400 mt-1">Panneau d'administration</p>
       </div>
 
@@ -61,7 +63,7 @@ const handleLogin = async () => {
               required
               autocomplete="email"
               class="w-full px-3 py-2.5 bg-surface-darker border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand/50 focus:border-brand transition-colors"
-              placeholder="admin@clipbag.shop"
+              placeholder="admin@store.com"
             />
           </div>
 

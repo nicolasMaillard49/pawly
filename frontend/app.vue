@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { storeConfig } from '~/config/store.config'
+
 const config = useRuntimeConfig()
 const productStore = useProductStore()
-const siteUrl = config.public.siteUrl || 'https://clipbag.shop'
+const siteUrl = config.public.siteUrl || storeConfig.storeUrl
 
 // Build absolute image URLs from product store (fallback to defaults)
 const productImages = computed(() => {
@@ -21,25 +23,25 @@ useHead({
       innerHTML: computed(() => JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Product',
-        name: productStore.product?.name || 'ClipBag - Sac Magnétique pour Bouteille',
-        description: productStore.product?.description || 'Le sac magnétique révolutionnaire pour vos bouteilles. Fixation instantanée, ultra léger (120g), compatible toutes bouteilles.',
+        name: productStore.product?.name || `${storeConfig.storeName} - ${storeConfig.product.tagline}`,
+        description: productStore.product?.description || storeConfig.product.description,
         image: productImages.value.slice(0, 3),
-        brand: { '@type': 'Brand', name: 'ClipBag' },
+        brand: { '@type': 'Brand', name: storeConfig.storeName },
         offers: {
           '@type': 'Offer',
           url: siteUrl,
-          priceCurrency: 'EUR',
-          price: String(productStore.product?.price || '29.99'),
+          priceCurrency: storeConfig.product.currency,
+          price: String(productStore.product?.price || storeConfig.product.defaultPrice),
           priceValidUntil: '2026-12-31',
           availability: 'https://schema.org/InStock',
           itemCondition: 'https://schema.org/NewCondition',
-          seller: { '@type': 'Organization', name: 'ClipBag' },
+          seller: { '@type': 'Organization', name: storeConfig.storeName },
           shippingDetails: {
             '@type': 'OfferShippingDetails',
             shippingRate: {
               '@type': 'MonetaryAmount',
               value: '0',
-              currency: 'EUR',
+              currency: storeConfig.product.currency,
             },
             shippingDestination: {
               '@type': 'DefinedRegion',

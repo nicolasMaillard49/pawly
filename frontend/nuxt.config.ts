@@ -5,48 +5,31 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:3000/api',
-      siteUrl: 'https://clipbag.shop',
-      metaPixelId: '2478874479214730',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:4000',
+      metaPixelId: process.env.NUXT_PUBLIC_META_PIXEL_ID || '',
     },
   },
   app: {
     head: {
       htmlAttrs: { lang: 'fr' },
-      title: 'ClipBag - Sac Magnétique pour Bouteille | Livraison Gratuite',
+      title: 'Mon Store - Boutique en ligne',
       meta: [
-        { name: 'description', content: 'Le sac magnétique révolutionnaire pour vos bouteilles. Fixation instantanée, ultra léger (120g), compatible toutes bouteilles. -40% : 29,99€ au lieu de 49,99€. Livraison gratuite en France.' },
-        { name: 'keywords', content: 'clipbag, sac magnétique bouteille, porte bouteille sport, accessoire sport, porte gourde magnétique' },
+        { name: 'description', content: 'Découvrez notre produit phare. Livraison gratuite en France.' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'fr_FR' },
-        { property: 'og:site_name', content: 'ClipBag' },
-        { property: 'og:title', content: 'ClipBag - Le Sac Magnétique pour Bouteille' },
-        { property: 'og:description', content: 'Libérez vos mains pendant le sport. Fixation magnétique instantanée, ultra léger. -40% : 29,99€.' },
-        { property: 'og:image', content: 'https://clipbag.shop/og.png' },
+        { property: 'og:site_name', content: 'Mon Store' },
+        { property: 'og:title', content: 'Mon Store - Boutique en ligne' },
+        { property: 'og:description', content: 'Découvrez notre produit phare. Livraison gratuite en France.' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'ClipBag - Le Sac Magnétique pour Bouteille' },
-        { name: 'twitter:description', content: 'Libérez vos mains pendant le sport. -40% : 29,99€. Livraison gratuite.' },
+        { name: 'twitter:title', content: 'Mon Store - Boutique en ligne' },
+        { name: 'twitter:description', content: 'Découvrez notre produit phare. Livraison gratuite en France.' },
         { name: 'theme-color', content: '#ffffff' },
-        { name: 'google-site-verification', content: 'a20ya7ig--nHqsLOgvsGWQUFYM0Dpj4d5EKT2s8wWdo' },
       ],
-      script: [
-        {
-          innerHTML: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2478874479214730');fbq('track','PageView');`,
-        },
-        {
-          src: 'https://www.googletagmanager.com/gtag/js?id=G-9ZMB9JPKLM',
-          async: true,
-        },
-        {
-          innerHTML: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-9ZMB9JPKLM');`,
-        },
-      ],
-      noscript: [
-        {
-          innerHTML: '<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2478874479214730&ev=PageView&noscript=1" />',
-        },
-      ],
+      // Analytics scripts (Meta Pixel, GA4) are injected dynamically
+      // via the useMetaPixel composable and storeConfig.analytics IDs.
+      // Set NUXT_PUBLIC_META_PIXEL_ID env var or storeConfig.analytics values.
       link: [
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -65,7 +48,7 @@ export default defineNuxtConfig({
     '/success': { ssr: false },
   },
   sitemap: {
-    siteUrl: 'https://clipbag.shop',
+    siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:4000',
     exclude: ['/admin/**', '/success', '/cancel'],
   },
   devServer: {

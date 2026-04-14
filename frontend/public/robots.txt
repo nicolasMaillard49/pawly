@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 
-Sitemap: https://clipbag.shop/sitemap.xml
+# Sitemap URL is set dynamically via nuxt.config.ts sitemap module

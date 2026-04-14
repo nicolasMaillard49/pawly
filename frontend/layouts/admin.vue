@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { storeConfig } from '~/config/store.config'
+
 const authStore = useAuthStore()
 const route = useRoute()
 const sidebarOpen = ref(false)
@@ -34,7 +36,7 @@ const isActive = (path: string) => {
     >
       <!-- Logo -->
       <div class="flex items-center gap-2 px-5 py-5 border-b border-white/10">
-        <span class="text-xl font-display font-bold text-white tracking-tight">CLIPBAG</span>
+        <span class="text-xl font-display font-bold text-white tracking-tight">{{ storeConfig.storeName }}</span>
         <span class="text-xs font-semibold bg-brand/20 text-brand px-1.5 py-0.5 rounded uppercase tracking-wider">
           Admin
         </span>
@@ -88,7 +90,7 @@ const isActive = (path: string) => {
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
         </button>
-        <span class="text-lg font-display font-bold text-white">CLIPBAG</span>
+        <span class="text-lg font-display font-bold text-white">{{ storeConfig.storeName }}</span>
         <span class="text-xs font-semibold bg-brand/20 text-brand px-1.5 py-0.5 rounded uppercase tracking-wider">
           Admin
         </span>

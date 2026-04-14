@@ -5,7 +5,7 @@
       <div class="text-center mb-10 sm:mb-16 animate-on-scroll">
         <span class="inline-block text-accent-dark text-xs font-display font-semibold uppercase tracking-widest mb-4">Comment ça marche ?</span>
         <h2 class="font-display font-bold text-[22px] sm:text-[26px] lg:text-[32px] leading-[1.15] text-text mb-3">
-          La magie de <span class="text-accent-dark">ClipBag</span> c'est simple,
+          {{ storeConfig.explanation.title }}
         </h2>
         <p class="text-base sm:text-lg text-text-muted font-medium">
           regarde, tu as juste à
@@ -31,7 +31,7 @@
                 muted
                 preload="auto"
               >
-                <source src="/images/product/clipbagPresentation.mp4" type="video/mp4" />
+                <source :src="storeConfig.explanation.videoSrc" type="video/mp4" />
               </video>
             </div>
           </div>
@@ -39,30 +39,15 @@
 
         <!-- Steps -->
         <div class="mt-10 lg:mt-0">
-          <!-- Step 1 -->
-          <div class="animate-on-scroll flex items-start gap-4 mb-8">
-            <span class="shrink-0 w-12 h-12 rounded-full bg-accent/20 text-text border border-accent/30 flex items-center justify-center font-display font-bold text-lg">1</span>
+          <div
+            v-for="(feature, idx) in storeConfig.explanation.features"
+            :key="idx"
+            class="animate-on-scroll flex items-start gap-4"
+            :class="idx < storeConfig.explanation.features.length - 1 ? 'mb-8' : ''"
+          >
+            <span class="shrink-0 w-12 h-12 rounded-full bg-accent/20 text-text border border-accent/30 flex items-center justify-center font-display font-bold text-lg">{{ idx + 1 }}</span>
             <div>
-              <p class="font-display font-bold text-text text-lg mb-1">Clipsez</p>
-              <p class="text-text-muted text-sm leading-relaxed">Se clippe sur <span class="text-text font-medium">n'importe quelle surface métallique</span>. Un geste, c'est fixé.</p>
-            </div>
-          </div>
-
-          <!-- Step 2 -->
-          <div class="animate-on-scroll flex items-start gap-4 mb-8">
-            <span class="shrink-0 w-12 h-12 rounded-full bg-accent/20 text-text border border-accent/30 flex items-center justify-center font-display font-bold text-lg">2</span>
-            <div>
-              <p class="font-display font-bold text-text text-lg mb-1">Videz vos poches</p>
-              <p class="text-text-muted text-sm leading-relaxed"><span class="text-text font-medium">Plus rien dans les mains, plus rien dans les poches.</span> Votre bouteille est à portée de main, sécurisée.</p>
-            </div>
-          </div>
-
-          <!-- Step 3 -->
-          <div class="animate-on-scroll flex items-start gap-4">
-            <span class="shrink-0 w-12 h-12 rounded-full bg-accent/20 text-text border border-accent/30 flex items-center justify-center font-display font-bold text-lg">3</span>
-            <div>
-              <p class="font-display font-bold text-text text-lg mb-1">Bougez librement</p>
-              <p class="text-text-muted text-sm leading-relaxed">Ultra léger (120g), <span class="text-text font-medium">bouteille toujours à portée de main</span>. Salle, rando, vélo, quotidien.</p>
+              <p class="text-text-muted text-sm leading-relaxed">{{ feature.text }}</p>
             </div>
           </div>
         </div>
@@ -72,6 +57,8 @@
 </template>
 
 <script setup lang="ts">
+import { storeConfig } from '~/config/store.config'
+
 const videoRef = ref<HTMLVideoElement | null>(null)
 
 onMounted(() => {

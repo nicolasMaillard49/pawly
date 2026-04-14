@@ -1,6 +1,8 @@
-# ClipBag - Frontend
+# Dropshipping Template - Frontend
 
-Nuxt 3 + Vue 3 + Tailwind CSS frontend pour le site e-commerce ClipBag.
+Nuxt 3 + Vue 3 + Tailwind CSS frontend for a single-product dropshipping store.
+
+All store-specific values (name, URL, product info, legal, theme) are configured in `config/store.config.ts`.
 
 ## Setup
 
@@ -8,10 +10,10 @@ Nuxt 3 + Vue 3 + Tailwind CSS frontend pour le site e-commerce ClipBag.
 npm install
 ```
 
-## Developpement
+## Development
 
 ```bash
-# Lancer le serveur de dev (port 4000)
+# Start the dev server (port 4000)
 npm run dev
 ```
 
@@ -25,61 +27,62 @@ npm run preview
 ## Tests
 
 ```bash
-npm run test:run    # 33 tests Vitest (une seule passe)
-npm run test        # Mode watch
+npm run test:run    # Vitest (single pass)
+npm run test        # Watch mode
 ```
 
-## Variables d'environnement
+## Environment variables
 
-Copier `.env.example` en `.env` et adapter les valeurs.
+Copy `.env.example` to `.env` and adjust values.
 
-| Variable | Description | Defaut |
-|----------|-------------|--------|
-| `NUXT_PUBLIC_API_BASE` | URL de l'API backend | `http://localhost:3000/api` |
-| `NUXT_PUBLIC_SITE_URL` | URL publique du site | `https://clipbag.shop` |
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `NUXT_PUBLIC_API_BASE` | Backend API URL | `http://localhost:3000/api` |
+| `NUXT_PUBLIC_SITE_URL` | Public site URL | `http://localhost:4000` |
+| `NUXT_PUBLIC_META_PIXEL_ID` | Meta Pixel ID (optional) | `` |
+
+## Store configuration
+
+Edit `frontend/config/store.config.ts` to customise:
+
+- Store identity (name, URL, contact email, order prefix)
+- Product info (name, tagline, description, prices)
+- Analytics IDs (Meta Pixel, GA4)
+- Theme colours and font
+- Hero, benefits, problems, explanation, testimonials, FAQ sections
+- Social links and guarantees
+- Legal information (company name, address, director, host)
 
 ---
 
-## Apres un git pull
+## After a git pull
 
-A executer **a chaque fois** apres un `git pull` pour s'assurer que tout est synchronise :
+Run these steps after every `git pull` to stay in sync:
 
 ```bash
-# 1. S'assurer que PostgreSQL tourne
+# 1. Ensure PostgreSQL is running
 cd ..
 docker compose up -d
 
 # 2. Backend — deps + Prisma + migrations
 cd backend
-npm install                   # Nouvelles deps si package.json a change
-npx prisma generate           # Regenere le client Prisma (obligatoire si schema.prisma a change)
-npx prisma migrate dev        # Applique les nouvelles migrations SQL
-npx tsx prisma/seed.ts        # Re-seed si le seed a ete modifie (idempotent)
+npm install
+npx prisma generate
+npx prisma migrate dev
+npx tsx prisma/seed.ts
 
 # 3. Frontend — deps
 cd ../frontend
-npm install                   # Nouvelles deps si package.json a change
+npm install
 
-# 4. Verifier que tout fonctionne
+# 4. Verify everything works
 cd ../backend
-node node_modules/jest/bin/jest.js          # 104 tests backend
+node node_modules/jest/bin/jest.js
 cd ../frontend
-node node_modules/vitest/vitest.mjs run     # 33 tests frontend
+node node_modules/vitest/vitest.mjs run
 
-# 5. Relancer les serveurs de dev
-# Terminal 1 : cd backend && npm run start:dev
-# Terminal 2 : cd frontend && npm run dev
-# Terminal 3 : stripe listen --forward-to localhost:3000/api/payments/webhook
+# 5. Start dev servers
+# Terminal 1: cd backend && npm run start:dev
+# Terminal 2: cd frontend && npm run dev
+# Terminal 3: stripe listen --forward-to localhost:3000/api/payments/webhook
 ```
-
-### Quand chaque etape est-elle necessaire ?
-
-| Etape | Quand |
-|-------|-------|
-| `npm install` | Un `package.json` a change (nouveau dep, version bump) |
-| `npx prisma generate` | Le fichier `schema.prisma` a change (nouveau champ, nouveau modele) |
-| `npx prisma migrate dev` | Un fichier apparait dans `backend/prisma/migrations/` |
-| `npx tsx prisma/seed.ts` | Le seed a ete modifie (nouvelles images, prix, nom produit) |
-| Relancer `stripe listen` | Le `whsec_...` a change ou la session a expire |
-
-> **En cas de doute, executez toutes les etapes.** Ca prend 30 secondes et evite les bugs de desynchronisation.

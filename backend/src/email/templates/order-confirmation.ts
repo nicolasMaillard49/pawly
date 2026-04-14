@@ -1,7 +1,13 @@
 import type { OrderEmailData } from '../email.service';
 
-export function orderConfirmationTemplate(data: OrderEmailData): string {
-  const orderNum = `GS-${String(data.orderNumber).padStart(5, '0')}`;
+export interface StoreInfo {
+  storeName: string;
+  storeUrl: string;
+  orderNum: string;
+}
+
+export function orderConfirmationTemplate(data: OrderEmailData, store: StoreInfo): string {
+  const { orderNum, storeName, storeUrl } = store;
   const addr = data.shippingAddress;
 
   const itemsHtml = data.items
@@ -68,7 +74,7 @@ export function orderConfirmationTemplate(data: OrderEmailData): string {
 
       <!-- CTA -->
       <div style="text-align: center; margin: 32px 0 16px;">
-        <a href="https://clipbag.shop/suivi?order=${data.orderNumber}"
+        <a href="${storeUrl}/suivi?order=${data.orderNumber}"
            style="display: inline-block; background: #10b981; color: white; padding: 14px 32px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 16px;">
           Suivre ma commande
         </a>
@@ -81,9 +87,9 @@ export function orderConfirmationTemplate(data: OrderEmailData): string {
 
     <!-- Footer -->
     <div style="text-align: center; padding: 24px; color: #9ca3af; font-size: 12px;">
-      <p style="margin: 0;">ClipBag &mdash; Sac Magnetique pour Bouteille</p>
+      <p style="margin: 0;">${storeName}</p>
       <p style="margin: 4px 0 0;">
-        <a href="https://clipbag.shop" style="color: #10b981; text-decoration: none;">clipbag.shop</a>
+        <a href="${storeUrl}" style="color: #10b981; text-decoration: none;">${storeUrl.replace(/^https?:\/\//, '')}</a>
       </p>
     </div>
 

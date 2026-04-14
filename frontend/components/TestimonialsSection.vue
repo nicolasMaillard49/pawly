@@ -153,6 +153,7 @@
 
 <script setup lang="ts">
 import { h } from 'vue'
+import { storeConfig } from '~/config/store.config'
 
 const InstagramIcon = () =>
   h('svg', { class: 'w-5 h-5 text-pink-500', fill: 'currentColor', viewBox: '0 0 24 24' }, [
@@ -257,86 +258,16 @@ const cardStyle = (idx: number) => {
   }
 }
 
-const testimonials = [
-  {
-    name: 'Thomas L.',
-    initials: 'TL',
-    sport: 'Musculation',
-    quote: "Game changer pour le gym en vrai. Je le clip sur le rack entre chaque série, ma bouteille est toujours la. J'y retourne plus sans.",
-  },
-  {
-    name: 'Kévin M.',
-    initials: 'KM',
-    sport: 'Musculation',
-    quote: "Bien recu nickel",
-  },
-  {
-    name: 'Mehdi B.',
-    initials: 'MB',
-    sport: 'Musculation',
-    quote: "Sceptique au départ, convaincu après 5 min. La fixation sur les machines est ultra solide. J'en ai repris un deuxieme pour un pote.",
-  },
-  {
-    name: 'Camille D.',
-    initials: 'CD',
-    sport: 'Musculation',
-    quote: "Plus besoin de poser ma gourde par terre entre les machines. Ca se fixe partout en salle c'est hyper pratique.",
-  },
-  {
-    name: 'Dylan R.',
-    initials: 'DR',
-    sport: 'Musculation',
-    quote: "Recu en 7j bonne qualité c'est pratique d'avoir les poche vide a la salle",
-  },
-  {
-    name: 'Lucas R.',
-    initials: 'LR',
-    sport: 'Musculation',
-    quote: "120g et ca tient une bouteille d'1L sans broncher. Je le fixe sur la smith machine, sur le banc, partout. Franchement au top.",
-  },
-  {
-    name: 'Léa P.',
-    initials: 'LP',
-    sport: 'Musculation',
-    quote: "Le design est canon et la qualité au top. Toute les filles de ma salle me demandent ou je l'ai trouvé haha",
-  },
-  {
-    name: 'Antoine G.',
-    initials: 'AG',
-    sport: 'Musculation',
-    quote: "Je soulève lourd et j'ai besoin de m'hydrater souvent. Le ClipBag sur le rack c'est la solution parfaite, zero contrainte.",
-  },
-  {
-    name: 'Nathan F.',
-    initials: 'NF',
-    sport: 'Musculation',
-    quote: "Ca fais 4 mois que je l'utilise tout les jours en salle. Toujours comme neuf. La qualité des aimants est impressionante.",
-  },
-  {
-    name: 'Florian T.',
-    initials: 'FT',
-    sport: 'Musculation',
-    quote: "Enfin les poches vides pendant ma séance. Plus de bouteille qui traine par terre. Nickel.",
-  },
-  {
-    name: 'Romain S.',
-    initials: 'RS',
-    sport: 'Musculation',
-    quote: "livraison rapide, bonne qualite. je recommande",
-  },
-  {
-    name: 'Hugo C.',
-    initials: 'HC',
-    sport: 'Musculation',
-    quote: "Mes potes au gym étaient tous mode 'c'est quoi ce truc' et maintenant y'en a 3 qui l'ont commandé mdr",
-  },
-  {
-    name: 'Enzo K.',
-    initials: 'EK',
-    sport: 'Musculation',
-    quote: "je met tout dedans rien telephone, portefeulle, elastique ecouteur, clée. Les poche completement vide c'est le top",
-  },
-]
+const testimonials = storeConfig.reviews.map((r) => {
+  const parts = r.name.split(' ')
+  const initials = parts.map(p => p[0]?.toUpperCase() || '').join('')
+  return {
+    name: r.name,
+    initials,
+    sport: r.sport,
+    quote: r.text,
+  }
+})
 </script>
 
 <style scoped>

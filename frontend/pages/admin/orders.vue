@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { storeConfig } from '~/config/store.config'
+
 definePageMeta({
   layout: 'admin',
   middleware: 'admin',
@@ -399,7 +401,7 @@ onBeforeUnmount(() => {
             <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 sticky top-0 bg-surface-light z-10">
               <div>
                 <h2 id="modal-title" class="text-lg font-bold text-white">
-                  Commande GS-{{ String(selectedOrder.orderNumber || '').padStart(5, '0') }}
+                  Commande {{ storeConfig.orderPrefix }}-{{ String(selectedOrder.orderNumber || '').padStart(5, '0') }}
                 </h2>
                 <p class="text-xs text-gray-500 font-mono mt-0.5">{{ selectedOrder.id }}</p>
               </div>
@@ -723,7 +725,7 @@ onBeforeUnmount(() => {
                 class="border-b border-white/5 hover:bg-white/[0.03] transition-colors cursor-pointer"
                 @click="openOrder(order)"
               >
-                <td class="px-5 py-3 text-gray-400 font-mono text-xs">GS-{{ String(order.orderNumber || '').padStart(5, '0') }}</td>
+                <td class="px-5 py-3 text-gray-400 font-mono text-xs">{{ storeConfig.orderPrefix }}-{{ String(order.orderNumber || '').padStart(5, '0') }}</td>
                 <td class="px-5 py-3 text-gray-300 whitespace-nowrap text-xs">{{ formatDate(order.createdAt) }}</td>
                 <td class="px-5 py-3">
                   <p class="text-white text-sm">{{ order.customerName || '—' }}</p>
