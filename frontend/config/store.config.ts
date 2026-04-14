@@ -142,13 +142,13 @@ export const storeConfig: StoreConfig = {
   // THEME — Colors and fonts
   // ═══════════════════════════════════
   theme: {
-    primary: '#a9f955',
-    primaryHover: '#9be84a',
-    secondary: '#da3024',
+    primary: '#9BCBEB',
+    primaryHover: '#7FB3D9',
+    secondary: '#000000',
     background: '#ffffff',
-    surfaceDark: '#080808',
-    text: '#101010',
-    font: 'Inter',
+    surfaceDark: '#000000',
+    text: '#000000',
+    font: 'Inconsolata',
   },
 
   // ═══════════════════════════════════
@@ -177,10 +177,10 @@ export const storeConfig: StoreConfig = {
   // PROBLEMS / FEATURES SECTION
   // ═══════════════════════════════════
   problems: [
-    { pain: 'Problème 1', solution: 'Solution apportée par le produit', image: '/images/product/feature-1.jpg', alt: 'Feature 1' },
-    { pain: 'Problème 2', solution: 'Solution apportée par le produit', image: '/images/product/feature-2.jpg', alt: 'Feature 2' },
-    { pain: 'Problème 3', solution: 'Solution apportée par le produit', image: '/images/product/feature-3.jpg', alt: 'Feature 3' },
-    { pain: 'Problème 4', solution: 'Solution apportée par le produit', image: '/images/product/feature-4.jpg', alt: 'Feature 4' },
+    { pain: 'Problème 1', solution: 'Solution apportée par le produit', image: '', alt: 'Feature 1' },
+    { pain: 'Problème 2', solution: 'Solution apportée par le produit', image: '', alt: 'Feature 2' },
+    { pain: 'Problème 3', solution: 'Solution apportée par le produit', image: '', alt: 'Feature 3' },
+    { pain: 'Problème 4', solution: 'Solution apportée par le produit', image: '', alt: 'Feature 4' },
   ],
 
   // ═══════════════════════════════════
@@ -189,7 +189,7 @@ export const storeConfig: StoreConfig = {
   explanation: {
     title: 'Comment ça marche',
     subtitle: 'Découvrez le produit en action',
-    videoSrc: '/images/product/presentation.mp4',
+    videoSrc: '',
     features: [
       { icon: 'zap', text: 'Avantage clé numéro 1' },
       { icon: 'heart', text: 'Avantage clé numéro 2' },

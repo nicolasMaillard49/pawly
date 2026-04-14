@@ -6,24 +6,24 @@ export default {
     extend: {
       colors: {
         accent: {
-          DEFAULT: '#5cb829',
-          hover: '#4da223',
-          dark: '#3d8a1b',
+          DEFAULT: '#9BCBEB',
+          hover: '#7FB3D9',
+          dark: '#5A9AC2',
         },
         surface: {
           DEFAULT: '#ffffff',
-          alt: '#f5f5f5',
-          dark: '#101010',
-          darker: '#0a0a0a',
+          alt: '#f7f9fb',
+          dark: '#000000',
+          darker: '#000000',
           light: '#1a1a1a',
           lighter: '#2a2a2a',
         },
         brand: {
-          DEFAULT: '#5cb829',
-          dark: '#4da223',
+          DEFAULT: '#9BCBEB',
+          dark: '#7FB3D9',
         },
         text: {
-          DEFAULT: '#101010',
+          DEFAULT: '#000000',
           muted: '#6b7280',
           inverse: '#ffffff',
         },
@@ -32,13 +32,13 @@ export default {
           light: '#e85550',
         },
         border: {
-          DEFAULT: 'rgba(16,16,16,0.12)',
-          strong: 'rgba(16,16,16,0.24)',
+          DEFAULT: 'rgba(0,0,0,0.12)',
+          strong: 'rgba(0,0,0,0.24)',
         },
       },
       fontFamily: {
-        sans: ['Barlow', 'system-ui', 'sans-serif'],
-        display: ['Barlow', 'system-ui', 'sans-serif'],
+        sans: ['Inconsolata', 'monospace'],
+        display: ['Inconsolata', 'monospace'],
       },
       borderRadius: {
         pill: '3.75rem',

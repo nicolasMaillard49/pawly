@@ -34,7 +34,7 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700;800&display=swap' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&display=swap' },
         { rel: 'preload', as: 'image', href: '/images/product/product-2.png' },
       ],
     },
@@ -52,7 +52,7 @@ export default defineNuxtConfig({
     exclude: ['/admin/**', '/success', '/cancel'],
   },
   devServer: {
-    port: 4000,
+    port: 4001,
     host: '0.0.0.0',
   },
   nitro: {
