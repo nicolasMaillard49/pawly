@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.nuxt/
+.output/
+.nitro/
+.env
+.env.local
+*.local
+.DS_Store
+Thumbs.db
+coverage/
+*.log
+generated/
+backend/package-lock.json
+
+# Local docs (contain deployment secrets)
+docs/*.html
