@@ -12,19 +12,19 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'fr' },
-      title: 'Mon Store - Boutique en ligne',
+      title: 'Pawly - Le pommeau de douche pour les pattes de votre compagnon',
       meta: [
-        { name: 'description', content: 'Découvrez notre produit phare. Livraison gratuite en France.' },
+        { name: 'description', content: 'Pawly est le pommeau de douche conçu pour nettoyer les pattes de votre chien ou chat. Branchez-le et rincez en quelques secondes. Livraison gratuite.' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'fr_FR' },
-        { property: 'og:site_name', content: 'Mon Store' },
-        { property: 'og:title', content: 'Mon Store - Boutique en ligne' },
-        { property: 'og:description', content: 'Découvrez notre produit phare. Livraison gratuite en France.' },
+        { property: 'og:site_name', content: 'Pawly' },
+        { property: 'og:title', content: 'Pawly - Des pattes propres en quelques secondes' },
+        { property: 'og:description', content: 'Pawly est le pommeau de douche conçu pour nettoyer les pattes de votre chien ou chat. Branchez-le et rincez en quelques secondes. Livraison gratuite.' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'Mon Store - Boutique en ligne' },
-        { name: 'twitter:description', content: 'Découvrez notre produit phare. Livraison gratuite en France.' },
+        { name: 'twitter:title', content: 'Pawly - Des pattes propres en quelques secondes' },
+        { name: 'twitter:description', content: 'Pawly est le pommeau de douche conçu pour nettoyer les pattes de votre chien ou chat. Branchez-le et rincez en quelques secondes. Livraison gratuite.' },
         { name: 'theme-color', content: '#ffffff' },
       ],
       // Analytics scripts (Meta Pixel, GA4) are injected dynamically

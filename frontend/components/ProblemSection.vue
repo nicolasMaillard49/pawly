@@ -9,9 +9,9 @@
         </div>
         <h2 class="header-title">
           Arrêtez de
-          <s class="header-title__strike" aria-label="subir, barré">subir</s>,<br>
-          commencez à
-          <span class="header-title__accent">performer</span>.
+          <s class="header-title__strike" aria-label="galérer, barré">galérer</s>,<br>
+          branchez
+          <span class="header-title__accent">Pawly</span>.
         </h2>
       </div>
 
@@ -185,7 +185,7 @@ const scrollToOrder = () => {
 .header-label__line {
   width: 1.5rem;
   height: 1px;
-  background: #3d8a1b;
+  background: #5A9AC2;
 }
 
 .header-label span {
@@ -194,7 +194,7 @@ const scrollToOrder = () => {
   font-size: 0.6875rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: #3d8a1b;
+  color: #5A9AC2;
 }
 
 .header-title {
@@ -227,7 +227,7 @@ const scrollToOrder = () => {
   border-radius: 1px;
 }
 
-.header-title__accent { color: #3d8a1b; }
+.header-title__accent { color: #5A9AC2; }
 
 /* ==============================
    Shared type
@@ -382,7 +382,7 @@ const scrollToOrder = () => {
 }
 
 .panel__item:focus-visible {
-  outline: 2px solid #5cb829;
+  outline: 2px solid #9BCBEB;
   outline-offset: -2px;
   border-radius: 0.25rem;
 }
@@ -401,7 +401,7 @@ const scrollToOrder = () => {
 }
 
 .panel__item.is-active .panel__item-indicator {
-  background: #5cb829;
+  background: #9BCBEB;
 }
 
 .panel__item-body {
@@ -470,8 +470,8 @@ const scrollToOrder = () => {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #5cb829;
-  color: #101010;
+  background: #9BCBEB;
+  color: #ffffff;
   font-family: Barlow, system-ui, sans-serif;
   font-weight: 700;
   font-size: 0.8125rem;
@@ -482,12 +482,12 @@ const scrollToOrder = () => {
   border: none;
   cursor: pointer;
   transition: background 0.2s, transform 0.15s;
-  box-shadow: 0 3px 14px rgba(92, 184, 41, 0.25);
+  box-shadow: 0 3px 14px rgba(155, 203, 235, 0.35);
 }
-.cta__btn:hover { background: #4da223; }
+.cta__btn:hover { background: #7FB3D9; }
 .cta__btn:active { transform: scale(0.97); }
 .cta__btn:focus-visible {
-  outline: 2px solid #3d8a1b;
+  outline: 2px solid #5A9AC2;
   outline-offset: 2px;
 }
 @media (min-width: 640px) {

@@ -112,20 +112,20 @@ export const storeConfig: StoreConfig = {
   // ═══════════════════════════════════
   // IDENTITY — Change these for your store
   // ═══════════════════════════════════
-  storeName: 'MON STORE',
-  storeUrl: 'https://monstore.shop',
-  contactEmail: 'contact@monstore.shop',
-  orderPrefix: 'MS',
+  storeName: 'PAWLY',
+  storeUrl: 'https://pawly.shop',
+  contactEmail: 'contact@pawly.shop',
+  orderPrefix: 'PW',
 
   // ═══════════════════════════════════
   // PRODUCT
   // ═══════════════════════════════════
   product: {
-    name: 'Nom du Produit',
-    tagline: 'Accroche principale du produit',
-    description: 'Description courte du produit pour le SEO et les réseaux sociaux.',
-    defaultPrice: 29.99,
-    originalPrice: 49.99,
+    name: 'Pawly',
+    tagline: 'Le pommeau de douche pour les pattes de votre compagnon',
+    description: 'Pawly est un pommeau de douche spécialement conçu pour nettoyer les pattes de votre chien ou chat. Branchez-le directement sur votre tuyau de douche et nettoyez en quelques secondes.',
+    defaultPrice: 19.99,
+    originalPrice: 30.00,
     currency: 'EUR',
     deliveryDays: '5-7',
   },
@@ -155,32 +155,32 @@ export const storeConfig: StoreConfig = {
   // HERO SECTION
   // ═══════════════════════════════════
   hero: {
-    headline: 'Titre principal accrocheur',
-    subheadline: 'Sous-titre qui décrit le bénéfice principal',
-    badge: '',
-    imageAlt: 'Photo du produit',
+    headline: 'Des pattes propres en un jet',
+    subheadline: 'Pawly se branche directement sur votre douche et nettoie les pattes de votre compagnon en quelques secondes — sans stress, sans bazar.',
+    badge: '-33%',
+    imageAlt: 'Pawly - Pommeau de douche nettoyeur de pattes',
   },
 
   // ═══════════════════════════════════
   // BENEFITS (collapsible description)
   // ═══════════════════════════════════
   benefits: [
-    { icon: 'bolt', title: 'Bénéfice 1', description: 'Description du premier avantage produit' },
-    { icon: 'shield', title: 'Bénéfice 2', description: 'Description du deuxième avantage produit' },
-    { icon: 'phone', title: 'Bénéfice 3', description: 'Description du troisième avantage produit' },
-    { icon: 'gift', title: 'Bénéfice 4', description: 'Description du quatrième avantage produit' },
-    { icon: 'link', title: 'Bénéfice 5', description: 'Description du cinquième avantage produit' },
-    { icon: 'scale', title: 'Bénéfice 6', description: 'Description du sixième avantage produit' },
+    { icon: 'bolt', title: 'Nettoyage express', description: 'Branchez, rincez, c\'est propre. Les pattes sont impeccables en quelques secondes.' },
+    { icon: 'shield', title: 'Doux pour les coussinets', description: 'Jets souples et diffus, spécialement calibrés pour ne pas effrayer votre animal.' },
+    { icon: 'link', title: 'Installation instantanée', description: 'Se branche directement sur n\'importe quel tuyau de douche standard, sans outil.' },
+    { icon: 'gift', title: 'Facile à entretenir', description: 'Matériaux anti-calcaire, un simple rinçage suffit après chaque utilisation.' },
+    { icon: 'phone', title: 'Chiens & chats', description: 'Adapté à toutes les tailles de pattes, du chihuahua au berger allemand.' },
+    { icon: 'scale', title: 'Économique & écologique', description: 'Fini les lingettes jetables — Pawly utilise uniquement de l\'eau.' },
   ],
 
   // ═══════════════════════════════════
   // PROBLEMS / FEATURES SECTION
   // ═══════════════════════════════════
   problems: [
-    { pain: 'Problème 1', solution: 'Solution apportée par le produit', image: '', alt: 'Feature 1' },
-    { pain: 'Problème 2', solution: 'Solution apportée par le produit', image: '', alt: 'Feature 2' },
-    { pain: 'Problème 3', solution: 'Solution apportée par le produit', image: '', alt: 'Feature 3' },
-    { pain: 'Problème 4', solution: 'Solution apportée par le produit', image: '', alt: 'Feature 4' },
+    { pain: 'Pattes boueuses après chaque balade', solution: 'Branchez Pawly sur votre douche et rincez les pattes en quelques jets — rapide, propre, sans éclabousser partout.', image: '/images/product/product-1.png', alt: 'Pawly rince les pattes boueuses sous la douche' },
+    { pain: 'Traces sur le canapé, les tapis et le parquet', solution: 'Un passage sous Pawly avant de rentrer et votre intérieur reste impeccable, même les jours de pluie.', image: '/images/product/product-2.png', alt: 'Intérieur propre grâce à Pawly' },
+    { pain: 'Bain complet à chaque retour de promenade', solution: 'Plus besoin de bain entier — Pawly cible uniquement les pattes avec un jet doux et précis.', image: '/images/product/product-3.png', alt: 'Nettoyage ciblé des pattes sans bain complet' },
+    { pain: 'Lingettes jetables coûteuses et polluantes', solution: 'Pawly n\'utilise que de l\'eau. Zéro déchet, zéro produit chimique, zéro coût récurrent.', image: '/images/product/product-4.png', alt: 'Pawly solution écologique sans lingettes' },
   ],
 
   // ═══════════════════════════════════
@@ -188,11 +188,12 @@ export const storeConfig: StoreConfig = {
   // ═══════════════════════════════════
   explanation: {
     title: 'Comment ça marche',
-    subtitle: 'Découvrez le produit en action',
-    videoSrc: '',
+    subtitle: '3 étapes, un jet d\'eau, des pattes impeccables',
+    videoSrc: '/images/product/product-video.mp4',
     features: [
-      { icon: 'zap', text: 'Avantage clé numéro 1' },
-      { icon: 'heart', text: 'Avantage clé numéro 2' },
+      { icon: 'zap', text: 'Branchez Pawly sur votre tuyau de douche' },
+      { icon: 'heart', text: 'Passez le jet doux sur les pattes de votre compagnon' },
+      { icon: 'zap', text: 'Séchez et c\'est fini — propre en quelques secondes !' },
     ],
   },
 
@@ -200,19 +201,23 @@ export const storeConfig: StoreConfig = {
   // TESTIMONIALS
   // ═══════════════════════════════════
   reviews: [
-    { name: 'Thomas L.', rating: 5, text: 'Excellent produit, je recommande !', sport: 'Fitness', verified: true },
-    { name: 'Camille D.', rating: 5, text: 'Très pratique au quotidien.', sport: 'Running', verified: true },
-    { name: 'Lucas R.', rating: 4, text: 'Bonne qualité, livraison rapide.', sport: 'Musculation', verified: true },
+    { name: 'Sophie M.', rating: 5, text: 'Mon golden revient toujours couvert de boue. Depuis qu\'on a Pawly, plus aucune trace dans la maison. Indispensable !', sport: 'Golden Retriever', verified: true },
+    { name: 'Marc T.', rating: 5, text: 'Super pratique et mon carlin n\'a aucun stress quand on l\'utilise. Le silicone est vraiment doux. Adopté !', sport: 'Carlin', verified: true },
+    { name: 'Julie P.', rating: 5, text: 'Fini les serviettes mouillées partout dans l\'entrée. Je recommande à tous les propriétaires de chiens.', sport: 'Berger Australien', verified: true },
+    { name: 'Antoine R.', rating: 4, text: 'Même notre chat se laisse faire ! Compact, facile à rincer. Très bon rapport qualité-prix.', sport: 'Chat Européen', verified: true },
+    { name: 'Clara B.', rating: 5, text: 'On l\'emmène à chaque balade en forêt. Les pattes sont nickel en 10 secondes, même après la pluie.', sport: 'Labrador', verified: true },
   ],
 
   // ═══════════════════════════════════
   // FAQ
   // ═══════════════════════════════════
   faq: [
-    { question: 'Combien de temps dure la livraison ?', answer: 'La livraison prend généralement entre 5 et 7 jours ouvrés en France métropolitaine.' },
-    { question: 'Quels sont les moyens de paiement acceptés ?', answer: 'Nous acceptons Visa, Mastercard, CB, Apple Pay, Google Pay et Samsung Pay via notre partenaire Stripe.' },
-    { question: 'Puis-je retourner le produit ?', answer: 'Oui, vous disposez de 30 jours après réception pour retourner le produit s\'il ne vous convient pas.' },
-    { question: 'Comment contacter le service client ?', answer: 'Vous pouvez nous écrire à tout moment via notre adresse email. Nous répondons sous 24h.' },
+    { question: 'Pawly est-il adapté à toutes les tailles de chiens ?', answer: 'Oui ! Les poils en silicone souple s\'adaptent aussi bien aux petites pattes d\'un chihuahua qu\'aux grosses pattes d\'un labrador. Pawly convient également aux chats.' },
+    { question: 'Comment entretenir Pawly ?', answer: 'Rien de plus simple : rincez le pommeau à l\'eau claire après utilisation. Les matériaux anti-calcaire facilitent l\'entretien au quotidien.' },
+    { question: 'Combien de temps dure la livraison ?', answer: 'La livraison prend généralement entre 5 et 7 jours ouvrés en France métropolitaine. Livraison gratuite sur toutes les commandes.' },
+    { question: 'Puis-je retourner Pawly si ça ne convient pas ?', answer: 'Bien sûr ! Vous disposez de 30 jours après réception pour retourner Pawly s\'il ne vous convient pas. Satisfait ou remboursé.' },
+    { question: 'Quels sont les moyens de paiement acceptés ?', answer: 'Nous acceptons Visa, Mastercard, CB, Apple Pay, Google Pay et Samsung Pay via notre partenaire Stripe. Paiement 100% sécurisé.' },
+    { question: 'Mon animal va-t-il se laisser faire ?', answer: 'Pawly diffuse un jet doux et silencieux, bien moins stressant qu\'une douche classique. La plupart des animaux s\'y habituent dès la première utilisation.' },
   ],
 
   // ═══════════════════════════════════

@@ -100,32 +100,6 @@
           <!-- BLOC 1: Aligned with carousel height -->
           <div class="lg:flex lg:flex-col">
 
-          <!-- Promo adbar -->
-          <div class="adbar overflow-hidden mb-6 hero-fade-in" style="animation-delay: 0.05s">
-            <div class="adbar__track">
-              <div class="adbar__msg">
-                ACHETEZ 2 &rarr; 24,99&euro; L'UNITÉ (ÉCONOMISEZ 10&euro;)
-                <span class="adbar__sep">&bull;</span>
-                ACHETEZ 3 &rarr; 22,99&euro; L'UNITÉ (ÉCONOMISEZ 21&euro;)
-                <span class="adbar__sep">&bull;</span>
-                ACHETEZ 4 &rarr; 20,99&euro; L'UNITÉ (ÉCONOMISEZ 36&euro;)
-              </div>
-              <div class="adbar__msg" aria-hidden="true">
-                ACHETEZ 2 &rarr; 24,99&euro; L'UNITÉ (ÉCONOMISEZ 10&euro;)
-                <span class="adbar__sep">&bull;</span>
-                ACHETEZ 3 &rarr; 22,99&euro; L'UNITÉ (ÉCONOMISEZ 21&euro;)
-                <span class="adbar__sep">&bull;</span>
-                ACHETEZ 4 &rarr; 20,99&euro; L'UNITÉ (ÉCONOMISEZ 36&euro;)
-              </div>
-              <div class="adbar__msg" aria-hidden="true">
-                ACHETEZ 2 &rarr; 24,99&euro; L'UNITÉ (ÉCONOMISEZ 10&euro;)
-                <span class="adbar__sep">&bull;</span>
-                ACHETEZ 3 &rarr; 22,99&euro; L'UNITÉ (ÉCONOMISEZ 21&euro;)
-                <span class="adbar__sep">&bull;</span>
-                ACHETEZ 4 &rarr; 20,99&euro; L'UNITÉ (ÉCONOMISEZ 36&euro;)
-              </div>
-            </div>
-          </div>
 
           <!-- Social proof -->
           <div class="flex items-center justify-center lg:justify-start gap-2 mb-5 hero-fade-in flex-nowrap overflow-hidden" style="animation-delay: 0.1s">
@@ -146,111 +120,22 @@
 
           <!-- H1 -->
           <h1 class="font-display font-bold text-[22px] sm:text-[28px] lg:text-[clamp(1.5rem,2.5vw,2.125rem)] uppercase tracking-tight text-text leading-[1.1] mb-5 lg:mb-6 hero-fade-in" style="animation-delay: 0.2s">
-            Plus Jamais Les Mains
-            <span class="relative inline-block">
-              <span class="text-accent-dark">Prises</span>
-              <span class="absolute -bottom-1 left-0 w-full h-1 bg-accent rounded-full"></span>
-            </span>
+            {{ storeConfig.hero.headline }}
           </h1>
 
           <!-- Description -->
           <p class="text-text-muted text-sm sm:text-base mb-4 lg:mb-5 max-w-lg mx-auto lg:mx-0 leading-relaxed hero-fade-in" style="animation-delay: 0.3s">
-            Fixation magnétique instantanée, ultra léger (120g), compatible toutes bouteilles.
+            {{ storeConfig.hero.subheadline }}
           </p>
 
-          <!-- Pack selection -->
-          <div class="mb-4 lg:mb-5 hero-fade-in space-y-5" style="animation-delay: 0.33s">
-            <!-- Packs Goodies (Sport, Kit Complet) -->
-            <div v-if="goodiesBundles.length">
-              <p class="text-text font-display font-semibold text-xs uppercase tracking-wider mb-2 text-left">Packs Premium</p>
-              <div class="flex flex-col gap-3 sm:gap-2">
-                <button
-                  v-for="bundle in goodiesBundles"
-                  :key="bundle.id"
-                  :class="[
-                    'relative flex flex-col gap-2 px-4 py-3 rounded-xl border transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 text-left',
-                    selectedBundleId === bundle.id
-                      ? 'border-accent bg-accent/5'
-                      : 'border-border hover:border-accent/30'
-                  ]"
-                  @click="selectBundle(bundle.id)"
-                >
-                  <span v-if="bundle.slug === 'complet'" class="absolute -top-2.5 right-3 bg-accent text-white text-[11px] font-display font-semibold px-2 py-0.5 rounded-full">Populaire</span>
-                  <!-- Title row: label + 1x product + badge + price -->
-                  <div class="flex items-center justify-between w-full">
-                    <div class="flex items-center gap-2">
-                      <span :class="['w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0', selectedBundleId === bundle.id ? 'border-accent-dark' : 'border-border']">
-                        <span v-if="selectedBundleId === bundle.id" class="w-2 h-2 rounded-full bg-accent-dark" />
-                      </span>
-                      <span class="text-text font-display font-semibold text-sm sm:text-base">{{ bundle.label }}</span>
-                      <span class="text-text-muted text-xs">1x {{ productStore.product?.name?.split(' - ')[0] || storeConfig.storeName }}</span>
-                      <span v-if="bundle.badge" class="text-urgency text-xs font-display font-bold uppercase">{{ bundle.badge }}</span>
-                    </div>
-                    <div class="flex items-baseline gap-1.5">
-                      <span v-if="bundle.comparePrice" class="text-text-muted line-through text-xs">{{ bundle.comparePrice.toFixed(2).replace('.', ',') }}€</span>
-                      <span class="text-text font-display font-semibold text-base sm:text-lg">{{ bundle.price.toFixed(2).replace('.', ',') }}€</span>
-                    </div>
-                  </div>
-                  <!-- Accessory items row with images -->
-                  <div class="flex items-center gap-x-1.5 overflow-x-auto scrollbar-hide">
-                    <template v-for="(item, idx) in bundle.items.filter(i => i.productId !== productStore.product?.id)" :key="item.id">
-                      <span v-if="idx > 0" class="text-text-muted text-xs shrink-0">+</span>
-                      <span v-else class="text-text-muted text-xs shrink-0">+</span>
-                      <div class="flex items-center gap-1.5 shrink-0">
-                        <span class="text-text-muted text-xs whitespace-nowrap">{{ item.product.name }}</span>
-                        <img
-                          v-if="item.product.images?.[0]"
-                          :src="item.product.images[0]"
-                          :alt="item.product.name"
-                          class="w-9 h-9 rounded-md object-cover border border-border bg-surface-alt"
-                        />
-                        <span v-else class="w-9 h-9 rounded-md bg-surface-alt border border-border flex items-center justify-center">
-                          <svg class="w-4 h-4 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
-                        </span>
-                      </div>
-                    </template>
-                  </div>
-                </button>
-              </div>
-            </div>
-
-            <!-- Packs Groupe (Duo, Equipe) -->
-            <div v-if="groupBundles.length">
-              <p class="text-text font-display font-semibold text-xs uppercase tracking-wider mb-2 text-left">Offres de groupe</p>
-              <div class="flex flex-col gap-3 sm:gap-2">
-                <button
-                  v-for="bundle in groupBundles"
-                  :key="bundle.id"
-                  :class="[
-                    'relative flex items-center justify-between px-4 py-3 rounded-xl border transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
-                    selectedBundleId === bundle.id
-                      ? 'border-accent bg-accent/5'
-                      : 'border-border hover:border-accent/30'
-                  ]"
-                  @click="selectBundle(bundle.id)"
-                >
-                  <div class="flex items-center gap-2">
-                    <span :class="['w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0', selectedBundleId === bundle.id ? 'border-accent-dark' : 'border-border']">
-                      <span v-if="selectedBundleId === bundle.id" class="w-2 h-2 rounded-full bg-accent-dark" />
-                    </span>
-                    <span class="text-text font-display font-semibold text-sm sm:text-base">{{ bundle.label }}</span>
-                    <span class="text-text-muted text-xs">{{ bundle.description }}</span>
-                    <span v-if="bundle.badge" class="text-urgency text-xs font-display font-bold uppercase">{{ bundle.badge }}</span>
-                  </div>
-                  <div class="flex items-baseline gap-1.5">
-                    <span v-if="bundle.comparePrice" class="text-text-muted line-through text-xs">{{ bundle.comparePrice.toFixed(2).replace('.', ',') }}€</span>
-                    <span class="text-text font-display font-semibold text-base sm:text-lg">{{ bundle.price.toFixed(2).replace('.', ',') }}€</span>
-                  </div>
-                </button>
-              </div>
-            </div>
-
+          <!-- Promo badge -->
+          <div class="mb-4 lg:mb-5 hero-fade-in" style="animation-delay: 0.33s">
             <div class="inline-flex items-center gap-1.5 bg-urgency/10 text-urgency text-xs sm:text-sm font-display font-semibold px-3 py-1.5 rounded-full">
               <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
               </svg>
-              -40% de réduction
+              {{ storeConfig.hero.badge }} — Offre limitée
             </div>
           </div>
 
@@ -278,7 +163,7 @@
               <div class="inline-flex items-center bg-surface-alt border border-border rounded-xl">
                 <button
                   class="flex items-center justify-center w-9 h-9 text-text-muted hover:text-text transition-colors cursor-pointer focus:outline-none rounded-l-xl disabled:opacity-30 disabled:cursor-not-allowed"
-                  :disabled="quantity <= 1 || !!currentBundle"
+                  :disabled="quantity <= 1"
                   aria-label="Diminuer"
                   @click="decrementQuantity"
                 >
@@ -287,7 +172,7 @@
                 <span class="w-9 text-center text-text font-display font-bold text-sm select-none">{{ quantity }}</span>
                 <button
                   class="flex items-center justify-center w-9 h-9 text-text-muted hover:text-text transition-colors cursor-pointer focus:outline-none rounded-r-xl disabled:opacity-30 disabled:cursor-not-allowed"
-                  :disabled="quantity >= 10 || !!currentBundle"
+                  :disabled="quantity >= 10"
                   aria-label="Augmenter"
                   @click="incrementQuantity"
                 >
@@ -310,7 +195,7 @@
               class="morph-container relative overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
               :class="showAddressForm
                 ? 'bg-surface-alt rounded-xl border border-border shadow-[0_4px_24px_rgba(0,0,0,0.06)]'
-                : 'bg-[#a9f955] rounded-pill hover:bg-[#9be84a] active:scale-[0.98] cursor-pointer'"
+                : 'bg-accent rounded-pill hover:bg-accent-hover active:scale-[0.98] cursor-pointer'"
               @click="!showAddressForm ? (showAddressForm = true) : null"
             >
               <!-- Button label — collapses out -->
@@ -320,7 +205,7 @@
                   ? 'max-h-0 py-0 opacity-0 pointer-events-none'
                   : 'max-h-20 py-4 opacity-100'"
               >
-                <span class="text-text font-sans font-semibold text-base sm:text-lg px-8 select-none">AJOUTER AU PANIER</span>
+                <span class="text-white font-sans font-semibold text-base sm:text-lg px-8 select-none">AJOUTER AU PANIER</span>
               </div>
 
               <!-- Form content — expands in -->
@@ -399,10 +284,10 @@
                   style="--field-i: 7"
                   :disabled="loading || !isAddressValid"
                   :class="[
-                    'group w-full text-text font-sans font-semibold text-base sm:text-lg py-3 px-8 rounded-pill transition-all duration-150 ease-in-out focus:outline-none inline-flex items-center justify-center gap-3',
+                    'group w-full text-white font-sans font-semibold text-base sm:text-lg py-3 px-8 rounded-pill transition-all duration-150 ease-in-out focus:outline-none inline-flex items-center justify-center gap-3',
                     loading || !isAddressValid
                       ? 'bg-accent/50 cursor-not-allowed'
-                      : 'bg-[#a9f955] hover:bg-[#9be84a] cursor-pointer active:scale-[0.98]',
+                      : 'bg-accent hover:bg-accent-hover cursor-pointer active:scale-[0.98]',
                   ]"
                   @click.stop="handleCheckout"
                 >
@@ -534,7 +419,7 @@ const { track: fbTrack } = useMetaPixel()
 const productImages = computed(() => {
   const imgs = productStore.product?.images
   if (imgs && imgs.length > 0) return imgs
-  return ['/images/product/product-1.png', '/images/product/product-2.png', '/images/product/product-3.png', '/images/product/product-4.png', '/images/product/product-5.png', '/images/product/product-6.png']
+  return ['/images/product/product-1.png', '/images/product/product-2.png', '/images/product/product-3.png', '/images/product/product-4.png']
 })
 
 const currentImageIndex = ref(0)
@@ -617,56 +502,24 @@ const isAddressValid = computed(() =>
   city.value.trim().length >= 1
 )
 
-const bundles = computed(() => productStore.bundles)
-const selectedBundleId = ref('')
-
-const currentBundle = computed(() => bundles.value.find(b => b.id === selectedBundleId.value))
-
-// Bundles goodies = contient des produits differents (Sport, Kit Complet)
-const goodiesBundles = computed(() => bundles.value.filter(b => {
-  const uniqueProducts = new Set(b.items.map(i => i.productId))
-  return uniqueProducts.size > 1
-}))
-
-// Bundles groupe = meme produit en plusieurs exemplaires (Duo, Equipe)
-const groupBundles = computed(() => bundles.value.filter(b => {
-  const uniqueProducts = new Set(b.items.map(i => i.productId))
-  return uniqueProducts.size <= 1
-}))
-
-const selectBundle = (id: string) => {
-  if (selectedBundleId.value === id) {
-    selectedBundleId.value = ''
-    quantity.value = 1
-    return
-  }
-  selectedBundleId.value = id
-  quantity.value = 1
-  const bundle = bundles.value.find(b => b.id === id)
-  if (bundle) {
-    fbTrack('AddToCart', { content_name: bundle.label, content_ids: [bundle.id], content_type: 'product', value: bundle.price, currency: 'EUR' })
-  }
-}
-
-const decrementQuantity = () => { if (!currentBundle.value && quantity.value > 1) quantity.value-- }
-const incrementQuantity = () => { if (!currentBundle.value && quantity.value < 10) quantity.value++ }
+const decrementQuantity = () => { if (quantity.value > 1) quantity.value-- }
+const incrementQuantity = () => { if (quantity.value < 10) quantity.value++ }
 
 const unitPrice = computed(() => productStore.product?.price || storeConfig.product.defaultPrice)
 const originalUnitPrice = computed(() => productStore.product?.comparePrice || storeConfig.product.originalPrice)
 
 const formattedTotal = computed(() => {
-  const total = currentBundle.value ? currentBundle.value.price : unitPrice.value * quantity.value
+  const total = unitPrice.value * quantity.value
   return `${total.toFixed(2).replace('.', ',')}€`
 })
 
 const originalTotal = computed(() => {
-  if (currentBundle.value?.comparePrice) return `${currentBundle.value.comparePrice.toFixed(2).replace('.', ',')}€`
   return `${(originalUnitPrice.value * quantity.value).toFixed(2).replace('.', ',')}€`
 })
 
 const savedAmount = computed(() => {
-  const original = currentBundle.value?.comparePrice || originalUnitPrice.value * quantity.value
-  const actual = currentBundle.value ? currentBundle.value.price : unitPrice.value * quantity.value
+  const original = originalUnitPrice.value * quantity.value
+  const actual = unitPrice.value * quantity.value
   return `${(original - actual).toFixed(2).replace('.', ',')}€`
 })
 
@@ -675,15 +528,15 @@ const handleCheckout = async () => {
   loading.value = true
   error.value = ''
   try {
-    const totalValue = currentBundle.value ? currentBundle.value.price : unitPrice.value * quantity.value
-    const pixelParams = { content_name: currentBundle.value?.label || productStore.product?.name || storeConfig.storeName, content_ids: [currentBundle.value?.id || productStore.product?.id || ''], content_type: 'product', num_items: quantity.value, value: totalValue, currency: 'EUR' }
+    const totalValue = unitPrice.value * quantity.value
+    const pixelParams = { content_name: productStore.product?.name || storeConfig.product.name, content_ids: [productStore.product?.id || ''], content_type: 'product', num_items: quantity.value, value: totalValue, currency: 'EUR' }
     fbTrack('AddToCart', pixelParams)
     fbTrack('InitiateCheckout', pixelParams)
     const { apiFetch } = useApi()
     const response = await apiFetch<{ sessionId: string; url: string }>('/payments/create-checkout', {
       method: 'POST',
       body: {
-        productId: productStore.product?.id || '', quantity: quantity.value, bundleId: selectedBundleId.value || undefined,
+        productId: productStore.product?.id || '', quantity: quantity.value,
         customerName: (customerFirstName.value.trim() + ' ' + customerLastName.value.trim()), customerEmail: customerEmail.value.trim(),
         customerPhone: customerPhone.value.trim() || undefined,
         shippingAddress: { line1: addressLine1.value.trim(), city: city.value.trim(), postalCode: postalCode.value.trim(), country: 'FR' },
@@ -736,19 +589,6 @@ onUnmounted(() => { stopAutoplay() })
 .thumbnails-scroll { scrollbar-width: none; -ms-overflow-style: none; }
 .thumbnails-scroll::-webkit-scrollbar { display: none; }
 
-/* Promo adbar */
-.adbar { border-bottom: 1px solid rgba(0,0,0,0.06); padding: 10px 0; position: relative; }
-.adbar__track { display: flex; width: max-content; animation: adbar-marquee 40s linear infinite; }
-.adbar:hover .adbar__track { animation-play-state: paused; }
-.adbar__msg { display: flex; align-items: center; white-space: nowrap; font-size: 13px; letter-spacing: 0.2px; padding: 0 18px; font-weight: 600; color: #101010; }
-.adbar__sep { opacity: 0.5; margin: 0 14px; }
-@keyframes adbar-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-@media (max-width: 768px) {
-  .adbar { margin-bottom: 16px; }
-  .adbar__track { animation-duration: 28s; }
-  .adbar__msg { font-size: 12px; padding: 0 14px; }
-}
-
 /* Trust marquee */
 .trust-marquee { position: relative; width: 100%; }
 .trust-marquee__track { display: flex; align-items: center; gap: 0; width: max-content; animation: marquee-scroll 30s linear infinite; }
@@ -774,7 +614,7 @@ onUnmounted(() => { stopAutoplay() })
 @media (prefers-reduced-motion: reduce) {
   .hero-fade-in, .hero-image-in { animation: none; opacity: 1; transform: none; }
   .carousel-next-enter-active, .carousel-next-leave-active, .carousel-prev-enter-active, .carousel-prev-leave-active { transition: none; }
-  .trust-marquee__track, .adbar__track { animation: none; }
+  .trust-marquee__track { animation: none; }
   .morph-field { opacity: 1; transform: none; animation: none; }
   .morph-container { transition: none; }
 }

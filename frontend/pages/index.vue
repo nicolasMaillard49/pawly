@@ -17,7 +17,7 @@
     >
       <button
         v-if="showFloatingCta"
-        class="fixed bottom-6 left-4 right-4 z-40 sm:hidden bg-text hover:bg-text/90 active:scale-[0.98] text-white font-sans font-semibold text-base py-3 px-8 rounded-pill cursor-pointer transition-colors duration-150 ease-in-out flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
+        class="fixed bottom-6 left-4 right-4 z-40 sm:hidden bg-accent hover:bg-accent-hover active:scale-[0.98] text-white font-sans font-semibold text-base py-3 px-8 rounded-pill cursor-pointer transition-colors duration-150 ease-in-out flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
         @click="scrollToOrder"
       >
         AJOUTER AU PANIER
@@ -58,16 +58,14 @@ const productStore = useProductStore()
 const { track: fbTrack } = useMetaPixel()
 
 await useAsyncData(
-  'product-and-bundles',
+  'product',
   async () => {
-    await Promise.all([productStore.fetchProduct(), productStore.fetchBundles()])
+    await productStore.fetchProduct()
     return { ok: true }
   },
   {
-    // Force a refetch if the Pinia store is empty (e.g. returning from
-    // Stripe checkout through a fresh /cancel page load).
     getCachedData: () =>
-      productStore.product && productStore.bundles.length ? { ok: true } : undefined,
+      productStore.product ? { ok: true } : undefined,
   }
 )
 

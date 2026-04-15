@@ -8,10 +8,7 @@
           {{ storeConfig.explanation.title }}
         </h2>
         <p class="text-base sm:text-lg text-text-muted font-medium">
-          regarde, tu as juste à
-          <span class="relative inline-block mx-1">
-            <span class="text-accent-dark font-display font-semibold border-2 border-dashed border-accent/50 rounded-xl px-3 py-1 sm:px-4 sm:py-1.5">Clip ton Bag</span>
-          </span>
+          {{ storeConfig.explanation.subtitle }}
         </p>
       </div>
 

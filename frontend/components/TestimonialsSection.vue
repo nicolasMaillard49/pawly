@@ -329,8 +329,8 @@ const testimonials = storeConfig.reviews.map((r) => {
 
 .review-dot--active {
   width: 28px;
-  background: var(--color-accent, #5cb829);
-  box-shadow: 0 0 12px rgba(92, 184, 41, 0.4);
+  background: var(--color-accent, #9BCBEB);
+  box-shadow: 0 0 12px rgba(155, 203, 235, 0.5);
 }
 
 /* ---- Desktop: larger cards ---- */

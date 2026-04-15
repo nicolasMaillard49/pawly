@@ -55,7 +55,7 @@
 
         <!-- Desktop CTA -->
         <button
-          class="hidden md:inline-flex items-center bg-[#a9f955] text-text py-3 px-7 rounded-pill font-sans font-semibold text-base cursor-pointer transition-colors duration-150 ease-in-out focus:outline-none hover:bg-[#9be84a]"
+          class="hidden md:inline-flex items-center bg-accent text-white py-3 px-7 rounded-pill font-sans font-semibold text-base cursor-pointer transition-colors duration-150 ease-in-out focus:outline-none hover:bg-accent-hover"
           @click="scrollToSection('#order-section')"
         >
           AJOUTER AU PANIER
@@ -131,7 +131,7 @@
           </template>
           <div class="pt-2">
             <button
-              class="w-full bg-[#a9f955] hover:bg-[#9be84a] text-text font-sans font-semibold text-base py-4 px-8 rounded-pill cursor-pointer transition-colors duration-150 ease-in-out focus:outline-none flex items-center justify-center"
+              class="w-full bg-accent hover:bg-accent-hover text-white font-sans font-semibold text-base py-4 px-8 rounded-pill cursor-pointer transition-colors duration-150 ease-in-out focus:outline-none flex items-center justify-center"
               @click="scrollToSection('#order-section'); mobileOpen = false"
             >
               AJOUTER AU PANIER
