@@ -189,7 +189,7 @@ const scrollToOrder = () => {
 }
 
 .header-label span {
-  font-family: Barlow, system-ui, sans-serif;
+  font-family: Inconsolata, monospace;
   font-weight: 600;
   font-size: 0.6875rem;
   letter-spacing: 0.25em;
@@ -198,7 +198,7 @@ const scrollToOrder = () => {
 }
 
 .header-title {
-  font-family: Barlow, system-ui, sans-serif;
+  font-family: Inconsolata, monospace;
   font-weight: 700;
   font-size: 1.5rem;
   line-height: 1.08;
@@ -233,7 +233,7 @@ const scrollToOrder = () => {
    Shared type
    ============================== */
 .counter {
-  font-family: Barlow, system-ui, sans-serif;
+  font-family: Inconsolata, monospace;
   font-weight: 700;
   font-size: 0.6875rem;
   line-height: 1;
@@ -242,7 +242,7 @@ const scrollToOrder = () => {
 }
 
 .card-problem {
-  font-family: Barlow, system-ui, sans-serif;
+  font-family: Inconsolata, monospace;
   font-weight: 700;
   font-size: 1rem;
   line-height: 1.2;
@@ -254,7 +254,7 @@ const scrollToOrder = () => {
 @media (min-width: 1280px) { .card-problem--lg { font-size: 1.25rem; } }
 
 .card-pain {
-  font-family: Barlow, system-ui, sans-serif;
+  font-family: Inconsolata, monospace;
   font-weight: 400;
   font-size: 0.75rem;
   line-height: 1.5;
@@ -263,7 +263,7 @@ const scrollToOrder = () => {
 }
 
 .card-solution {
-  font-family: Barlow, system-ui, sans-serif;
+  font-family: Inconsolata, monospace;
   font-weight: 500;
   font-size: 0.75rem;
   line-height: 1.5;
@@ -472,7 +472,7 @@ const scrollToOrder = () => {
   gap: 0.5rem;
   background: #9BCBEB;
   color: #ffffff;
-  font-family: Barlow, system-ui, sans-serif;
+  font-family: Inconsolata, monospace;
   font-weight: 700;
   font-size: 0.8125rem;
   letter-spacing: 0.06em;
@@ -498,7 +498,7 @@ const scrollToOrder = () => {
 }
 
 .cta__sub {
-  font-family: Barlow, system-ui, sans-serif;
+  font-family: Inconsolata, monospace;
   font-weight: 400;
   font-size: 0.6875rem;
   letter-spacing: 0.08em;
