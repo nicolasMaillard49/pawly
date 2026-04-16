@@ -30,7 +30,7 @@ describe('AuthService', () => {
   describe('login', () => {
     const admin = {
       id: 'admin-1',
-      email: 'admin@test.com',
+      username: 'admin',
       passwordHash: '$2b$10$hashedpassword',
     };
 
@@ -39,10 +39,10 @@ describe('AuthService', () => {
       (bcrypt.compare as jest.Mock).mockResolvedValue(true);
       jwtService.sign.mockReturnValue('jwt-token-123');
 
-      const result = await service.login('admin@test.com', 'password123');
+      const result = await service.login('admin', 'password123');
 
       expect(prisma.admin.findUnique).toHaveBeenCalledWith({
-        where: { email: 'admin@test.com' },
+        where: { username: 'admin' },
       });
       expect(bcrypt.compare).toHaveBeenCalledWith(
         'password123',
@@ -50,16 +50,16 @@ describe('AuthService', () => {
       );
       expect(jwtService.sign).toHaveBeenCalledWith({
         sub: 'admin-1',
-        email: 'admin@test.com',
+        username: 'admin',
       });
       expect(result).toEqual({ access_token: 'jwt-token-123' });
     });
 
-    it('should throw UnauthorizedException for non-existent email', async () => {
+    it('should throw UnauthorizedException for non-existent username', async () => {
       prisma.admin.findUnique.mockResolvedValue(null);
 
       await expect(
-        service.login('unknown@test.com', 'password'),
+        service.login('unknown', 'password'),
       ).rejects.toThrow(UnauthorizedException);
     });
 
@@ -68,7 +68,7 @@ describe('AuthService', () => {
       (bcrypt.compare as jest.Mock).mockResolvedValue(false);
 
       await expect(
-        service.login('admin@test.com', 'wrongpassword'),
+        service.login('admin', 'wrongpassword'),
       ).rejects.toThrow(UnauthorizedException);
     });
   });

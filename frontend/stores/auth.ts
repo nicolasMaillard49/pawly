@@ -8,11 +8,11 @@ export const useAuthStore = defineStore('auth', {
     isAuthenticated: (state) => !!state.token,
   },
   actions: {
-    async login(email: string, password: string) {
+    async login(username: string, password: string) {
       const { apiFetch } = useApi()
       const data = await apiFetch<{ access_token: string }>('/auth/login', {
         method: 'POST',
-        body: { email, password },
+        body: { username, password },
       })
       this.token = data.access_token
       if (import.meta.client) {

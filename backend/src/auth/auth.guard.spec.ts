@@ -43,7 +43,7 @@ describe('AuthGuard', () => {
   it('should return true with valid Bearer token', async () => {
     jwtService.verifyAsync.mockResolvedValue({
       sub: 'admin-1',
-      email: 'admin@test.com',
+      username: 'admin',
     });
 
     const context = createMockContext('Bearer valid-token');

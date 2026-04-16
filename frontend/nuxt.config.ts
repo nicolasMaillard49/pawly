@@ -12,26 +12,35 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'fr' },
-      title: 'Pawly - Le pommeau de douche pour les pattes de votre compagnon',
+      title: 'Pawly — Pommeau de douche pour chien et chat | Laver les pattes en 5 secondes',
       meta: [
-        { name: 'description', content: 'Pawly est le pommeau de douche conçu pour nettoyer les pattes de votre chien ou chat. Branchez-le et rincez en quelques secondes. Livraison gratuite.' },
+        { name: 'description', content: 'Pawly, la douchette à pattes pour chien et chat. Branchez-la sur votre douche et lavez les pattes boueuses en 5 secondes — sans bain complet, sans lingettes, sans stress. Jet doux adapté aux coussinets. Livraison gratuite en France.' },
+        { name: 'keywords', content: 'pommeau douche chien, douchette chien, laver pattes chien, nettoyer pattes chat, accessoire toilettage animal, douche chien, douche chat, pattes boueuses, pommeau patte, douchette animal compagnie, Pawly' },
+        { name: 'robots', content: 'index, follow, max-image-preview:large' },
+        { name: 'author', content: 'Pawly' },
+        { name: 'application-name', content: 'Pawly' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'fr_FR' },
         { property: 'og:site_name', content: 'Pawly' },
-        { property: 'og:title', content: 'Pawly - Des pattes propres en quelques secondes' },
-        { property: 'og:description', content: 'Pawly est le pommeau de douche conçu pour nettoyer les pattes de votre chien ou chat. Branchez-le et rincez en quelques secondes. Livraison gratuite.' },
+        { property: 'og:title', content: 'Pawly — Pommeau de douche pour chien et chat' },
+        { property: 'og:description', content: 'La douchette à pattes pour chien et chat. Lavez les pattes boueuses de votre compagnon en 5 secondes, sans bain complet.' },
+        { property: 'og:image', content: '/og.png' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
+        { property: 'og:image:type', content: 'image/png' },
+        { property: 'og:image:alt', content: 'Pawly - Pommeau de douche pour pattes de chien et chat' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'Pawly - Des pattes propres en quelques secondes' },
-        { name: 'twitter:description', content: 'Pawly est le pommeau de douche conçu pour nettoyer les pattes de votre chien ou chat. Branchez-le et rincez en quelques secondes. Livraison gratuite.' },
-        { name: 'theme-color', content: '#ffffff' },
+        { name: 'twitter:image', content: '/og.png' },
+        { name: 'twitter:title', content: 'Pawly — Pommeau de douche pour chien et chat' },
+        { name: 'twitter:description', content: 'La douchette à pattes pour chien et chat. Lavez les pattes boueuses en 5 secondes, sans bain complet.' },
+        { name: 'theme-color', content: '#9BCBEB' },
       ],
       // Analytics scripts (Meta Pixel, GA4) are injected dynamically
       // via the useMetaPixel composable and storeConfig.analytics IDs.
       // Set NUXT_PUBLIC_META_PIXEL_ID env var or storeConfig.analytics values.
       link: [
-        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+        { rel: 'icon', type: 'image/png', href: '/images/logo_blue.png' },
+        { rel: 'apple-touch-icon', href: '/images/logo_blue.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&display=swap' },

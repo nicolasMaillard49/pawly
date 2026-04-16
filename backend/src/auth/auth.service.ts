@@ -10,14 +10,14 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(email: string, password: string) {
-    const admin = await this.prisma.admin.findUnique({ where: { email } });
+  async login(username: string, password: string) {
+    const admin = await this.prisma.admin.findUnique({ where: { username } });
     if (!admin) throw new UnauthorizedException('Identifiants invalides');
 
     const valid = await bcrypt.compare(password, admin.passwordHash);
     if (!valid) throw new UnauthorizedException('Identifiants invalides');
 
-    const token = this.jwtService.sign({ sub: admin.id, email: admin.email });
+    const token = this.jwtService.sign({ sub: admin.id, username: admin.username });
     return { access_token: token };
   }
 }

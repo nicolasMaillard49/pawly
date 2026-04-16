@@ -122,8 +122,8 @@ export const storeConfig: StoreConfig = {
   // ═══════════════════════════════════
   product: {
     name: 'Pawly',
-    tagline: 'Le pommeau de douche pour les pattes de votre compagnon',
-    description: 'Pawly est un pommeau de douche spécialement conçu pour nettoyer les pattes de votre chien ou chat. Branchez-le directement sur votre tuyau de douche et nettoyez en quelques secondes.',
+    tagline: 'Pommeau de douche pour chien et chat',
+    description: 'Pawly est la douchette à pattes conçue pour les animaux de compagnie. Un pommeau de douche qui se branche en 5 secondes sur votre flexible pour laver les pattes boueuses de votre chien ou de votre chat sans stress, sans bain complet, sans lingettes. Jet doux, débit calibré pour les coussinets — adapté à toutes les races, du chiot au berger allemand, du chaton au maine coon. Fini les traces sur le canapé, les tapis et le parquet après chaque balade.',
     defaultPrice: 19.99,
     originalPrice: 30.00,
     currency: 'EUR',
@@ -158,7 +158,7 @@ export const storeConfig: StoreConfig = {
     headline: 'Des pattes propres en un jet',
     subheadline: 'Pawly se branche directement sur votre douche et nettoie les pattes de votre compagnon en quelques secondes — sans stress, sans bazar.',
     badge: '-33%',
-    imageAlt: 'Pawly - Pommeau de douche nettoyeur de pattes',
+    imageAlt: 'Pawly - Pommeau de douche pour laver les pattes de votre chien et de votre chat',
   },
 
   // ═══════════════════════════════════

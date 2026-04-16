@@ -1,5 +1,10 @@
 <template>
   <section id="testimonials-section" class="py-20 sm:py-28 px-4 sm:px-6 bg-surface-alt relative overflow-hidden">
+    <!-- Paw prints background trail -->
+    <img src="/images/logo_black.png" alt="" aria-hidden="true" class="absolute top-12 left-[4%] w-10 h-10 sm:w-14 sm:h-14 opacity-[0.06] -rotate-[20deg] pointer-events-none select-none" />
+    <img src="/images/logo_black.png" alt="" aria-hidden="true" class="absolute top-[30%] right-[5%] w-8 h-8 sm:w-12 sm:h-12 opacity-[0.06] rotate-[30deg] pointer-events-none select-none hidden sm:block" />
+    <img src="/images/logo_black.png" alt="" aria-hidden="true" class="absolute bottom-16 left-[10%] w-10 h-10 sm:w-12 sm:h-12 opacity-[0.07] rotate-[15deg] pointer-events-none select-none" />
+
     <div class="relative max-w-6xl mx-auto">
       <!-- Section header -->
       <div class="text-center mb-14 sm:mb-20 animate-on-scroll">
@@ -21,7 +26,7 @@
           </div>
           <div class="text-left">
             <span class="text-text font-display font-bold text-lg">4.5/5</span>
-            <span class="text-text-muted text-sm ml-1">basé sur 172 avis</span>
+            <span class="text-text-muted text-sm ml-1">basé sur 87 avis</span>
           </div>
         </div>
       </div>

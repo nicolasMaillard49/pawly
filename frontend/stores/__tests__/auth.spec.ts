@@ -22,11 +22,11 @@ describe('useAuthStore', () => {
     mockApiFetch.mockResolvedValue({ access_token: 'fake-jwt-token' })
 
     const store = useAuthStore()
-    await store.login('admin@test.com', 'password123')
+    await store.login('admin', 'password123')
 
     expect(mockApiFetch).toHaveBeenCalledWith('/auth/login', {
       method: 'POST',
-      body: { email: 'admin@test.com', password: 'password123' },
+      body: { username: 'admin', password: 'password123' },
     })
     expect(store.token).toBe('fake-jwt-token')
     expect(localStorage.getItem('admin_token')).toBe('fake-jwt-token')
@@ -66,7 +66,7 @@ describe('useAuthStore', () => {
 
     const store = useAuthStore()
 
-    await expect(store.login('admin@test.com', 'pass')).rejects.toThrow('Network error')
+    await expect(store.login('admin', 'pass')).rejects.toThrow('Network error')
     expect(store.token).toBeNull()
   })
 
@@ -74,7 +74,7 @@ describe('useAuthStore', () => {
     mockApiFetch.mockResolvedValue({ access_token: '' })
 
     const store = useAuthStore()
-    await store.login('admin@test.com', 'pass')
+    await store.login('admin', 'pass')
 
     expect(store.token).toBe('')
     expect(store.isAuthenticated).toBe(false)

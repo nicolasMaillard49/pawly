@@ -1,5 +1,9 @@
 <template>
   <section id="faq-section" class="py-20 sm:py-28 px-4 sm:px-6 bg-white relative overflow-hidden">
+    <!-- Paw prints background trail -->
+    <img src="/images/logo_black.png" alt="" aria-hidden="true" class="absolute top-20 right-[6%] w-10 h-10 sm:w-14 sm:h-14 opacity-[0.06] rotate-[25deg] pointer-events-none select-none" />
+    <img src="/images/logo_black.png" alt="" aria-hidden="true" class="absolute bottom-24 left-[4%] w-8 h-8 sm:w-12 sm:h-12 opacity-[0.06] -rotate-[15deg] pointer-events-none select-none hidden sm:block" />
+
     <div class="relative max-w-3xl mx-auto">
       <!-- Section header -->
       <div class="text-center mb-16 animate-on-scroll">

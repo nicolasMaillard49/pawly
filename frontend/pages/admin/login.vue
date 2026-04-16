@@ -7,7 +7,7 @@ definePageMeta({
 
 const authStore = useAuthStore()
 
-const email = ref('')
+const username = ref('')
 const password = ref('')
 const error = ref('')
 const loading = ref(false)
@@ -24,7 +24,7 @@ const handleLogin = async () => {
   error.value = ''
   loading.value = true
   try {
-    await authStore.login(email.value, password.value)
+    await authStore.login(username.value, password.value)
     navigateTo('/admin')
   } catch (e: any) {
     error.value = e?.data?.message || e?.message || 'Identifiants invalides'
@@ -53,17 +53,17 @@ const handleLogin = async () => {
         </div>
 
         <form @submit.prevent="handleLogin" class="space-y-4">
-          <!-- Email -->
+          <!-- Username -->
           <div>
-            <label for="email" class="block text-sm font-medium text-gray-300 mb-1.5">Email</label>
+            <label for="username" class="block text-sm font-medium text-gray-300 mb-1.5">Identifiant</label>
             <input
-              id="email"
-              v-model="email"
-              type="email"
+              id="username"
+              v-model="username"
+              type="text"
               required
-              autocomplete="email"
+              autocomplete="username"
               class="w-full px-3 py-2.5 bg-surface-darker border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand/50 focus:border-brand transition-colors"
-              placeholder="admin@store.com"
+              placeholder="admin"
             />
           </div>
 

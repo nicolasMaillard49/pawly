@@ -27,6 +27,12 @@ useHead({
         description: productStore.product?.description || storeConfig.product.description,
         image: productImages.value.slice(0, 3),
         brand: { '@type': 'Brand', name: storeConfig.storeName },
+        category: 'Animaux de compagnie > Accessoires de toilettage > Douchette pour chien et chat',
+        audience: {
+          '@type': 'PeopleAudience',
+          audienceType: 'Propriétaires de chien et chat',
+        },
+        keywords: 'pommeau de douche chien, douchette chien, douchette chat, laver pattes chien, nettoyer pattes chat, accessoire toilettage, douche animal compagnie',
         offers: {
           '@type': 'Offer',
           url: siteUrl,
@@ -56,8 +62,8 @@ useHead({
         },
         aggregateRating: {
           '@type': 'AggregateRating',
-          ratingValue: '4.8',
-          reviewCount: '2147',
+          ratingValue: '4.5',
+          reviewCount: '87',
           bestRating: '5',
           worstRating: '1',
         },

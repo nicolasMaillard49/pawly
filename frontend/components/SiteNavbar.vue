@@ -13,9 +13,17 @@
         <!-- Logo -->
         <NuxtLink
           to="/"
-          class="text-text font-display font-bold text-xl sm:text-2xl uppercase tracking-wider cursor-pointer select-none transition-colors duration-200 hover:text-text/70"
+          class="flex items-center gap-2 cursor-pointer select-none transition-opacity duration-200 hover:opacity-70"
+          :aria-label="storeConfig.storeName"
         >
-          {{ storeConfig.storeName }}
+          <img
+            src="/images/logo_black.png"
+            :alt="storeConfig.storeName"
+            class="h-8 sm:h-10 w-auto"
+          />
+          <span class="text-text font-display font-bold text-xl sm:text-2xl uppercase tracking-wider">
+            {{ storeConfig.storeName }}
+          </span>
         </NuxtLink>
 
         <!-- Desktop nav links -->
