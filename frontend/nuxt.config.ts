@@ -35,6 +35,7 @@ export default defineNuxtConfig({
         { name: 'twitter:title', content: 'Pawly — Pommeau de douche pour chien et chat' },
         { name: 'twitter:description', content: 'La douchette à pattes pour chien et chat. Lavez les pattes boueuses en 5 secondes, sans bain complet.' },
         { name: 'theme-color', content: '#9BCBEB' },
+        { name: 'google-site-verification', content: 'QL3TRGMECnwIOnFgvugar59yVItbN5gG5DDQzBtWkhE' },
       ],
       // Analytics scripts (Meta Pixel, GA4) are injected dynamically
       // via the useMetaPixel composable and storeConfig.analytics IDs.
