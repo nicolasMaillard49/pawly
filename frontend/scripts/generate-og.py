@@ -59,8 +59,8 @@ draw.text(
     spacing=10,
 )
 
-draw.rectangle([(text_x, 500), (text_x + 180, 556)], fill=WHITE)
-draw.text((text_x + 20, 510), "pawly.shop", fill=PRIMARY_DARK, font=small_font)
+draw.rectangle([(text_x, 500), (text_x + 270, 556)], fill=WHITE)
+draw.text((text_x + 20, 510), "pawly.shopping", fill=PRIMARY_DARK, font=small_font)
 
 img.save(OUT, "PNG", optimize=True)
 print(f"Wrote {OUT}  ({W}x{H})")

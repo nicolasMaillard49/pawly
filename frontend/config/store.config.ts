@@ -113,8 +113,8 @@ export const storeConfig: StoreConfig = {
   // IDENTITY — Change these for your store
   // ═══════════════════════════════════
   storeName: 'PAWLY',
-  storeUrl: 'https://pawly.shop',
-  contactEmail: 'contact@pawly.shop',
+  storeUrl: 'https://pawly.shopping',
+  contactEmail: 'contact@pawly.shopping',
   orderPrefix: 'PW',
 
   // ═══════════════════════════════════
