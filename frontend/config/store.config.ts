@@ -96,9 +96,15 @@ export interface StoreConfig {
   // Legal
   legal: {
     companyName: string
+    legalForm: string
     address: string
+    siren: string
+    siret: string
+    ape: string
+    vat: string
     director: string
     host: string
+    hostBackend: string
   }
 
   // Agency credit (optional)
@@ -244,10 +250,16 @@ export const storeConfig: StoreConfig = {
   // LEGAL
   // ═══════════════════════════════════
   legal: {
-    companyName: 'Nom de la société',
-    address: 'Adresse complète',
-    director: 'Nom du directeur de publication',
-    host: 'Vercel Inc. — San Francisco, CA',
+    companyName: 'NMF Agence',
+    legalForm: 'Entrepreneur individuel',
+    address: '1 rue Marguerin, 75014 Paris, France',
+    siren: '102 905 379',
+    siret: '102 905 379 00016',
+    ape: '6201Z – Programmation informatique',
+    vat: 'Non applicable, article 293 B du CGI',
+    director: 'NMF Agence',
+    host: 'Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA (frontend)',
+    hostBackend: 'Railway Corp., 2261 Market Street #4029, San Francisco, CA 94114, USA (backend et base de données)',
   },
 
   // ═══════════════════════════════════

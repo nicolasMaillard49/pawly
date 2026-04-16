@@ -41,7 +41,12 @@ useHead({
           <p>
             Le site <strong class="text-white">{{ siteDomain }}</strong> est édité par :<br />
             <strong class="text-white">{{ storeConfig.legal.companyName }}</strong><br />
+            {{ storeConfig.legal.legalForm }}<br />
             Siège social : {{ storeConfig.legal.address }}<br />
+            SIREN : {{ storeConfig.legal.siren }}<br />
+            SIRET : {{ storeConfig.legal.siret }}<br />
+            Code APE : {{ storeConfig.legal.ape }}<br />
+            TVA : {{ storeConfig.legal.vat }}<br />
             Directeur de la publication : {{ storeConfig.legal.director }}<br />
             Contact : <a :href="`mailto:${storeConfig.contactEmail}`" class="text-brand hover:text-brand-light transition-colors">{{ storeConfig.contactEmail }}</a>
           </p>
@@ -52,7 +57,12 @@ useHead({
           <h2 class="font-display font-bold text-xl text-white mb-4">2. Hébergeur</h2>
           <p>
             Le site est hébergé par :<br />
-            {{ storeConfig.legal.host }}
+            {{ storeConfig.legal.host }}<br />
+            <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" class="text-brand hover:text-brand-light transition-colors">vercel.com</a>
+          </p>
+          <p class="mt-3">
+            {{ storeConfig.legal.hostBackend }}<br />
+            <a href="https://railway.app" target="_blank" rel="noopener noreferrer" class="text-brand hover:text-brand-light transition-colors">railway.app</a>
           </p>
         </section>
 
