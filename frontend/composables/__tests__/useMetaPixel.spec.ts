@@ -16,11 +16,11 @@ describe('useMetaPixel', () => {
     ;(window as any).fbq = mockFbq
 
     const { track } = useMetaPixel()
-    track('AddToCart', { content_name: 'Mon Produit', value: 29.99, currency: 'EUR' })
+    track('AddToCart', { content_name: 'Mon Produit', value: 19.99, currency: 'EUR' })
 
     expect(mockFbq).toHaveBeenCalledWith('track', 'AddToCart', {
       content_name: 'Mon Produit',
-      value: 29.99,
+      value: 19.99,
       currency: 'EUR',
     })
   })
@@ -63,6 +63,6 @@ describe('useMetaPixel', () => {
 
     const { track } = useMetaPixel()
 
-    expect(() => track('Purchase', { value: 29.99 })).not.toThrow()
+    expect(() => track('Purchase', { value: 19.99 })).not.toThrow()
   })
 })

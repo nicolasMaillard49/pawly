@@ -45,7 +45,7 @@ describe('PaymentsService', () => {
     id: 'prod-1',
     name: 'Test Product',
     description: 'A description',
-    price: 29.99,
+    price: 19.99,
     images: ['https://example.com/img.jpg'],
   };
 
@@ -100,7 +100,7 @@ describe('PaymentsService', () => {
 
       expect(prisma.order.create).toHaveBeenCalledWith(
         expect.objectContaining({
-          data: expect.objectContaining({ total: 59.98 }),
+          data: expect.objectContaining({ total: 39.98 }),
         }),
       );
       expect(result.sessionId).toBe('cs_solo');
@@ -229,8 +229,8 @@ describe('PaymentsService', () => {
         orderNumber: 1,
         customerName: 'Jean',
         customerEmail: 'jean@test.com',
-        total: 29.99,
-        items: [{ product: { name: 'Mon Produit' }, quantity: 1, price: 29.99 }],
+        total: 19.99,
+        items: [{ product: { name: 'Mon Produit' }, quantity: 1, price: 19.99 }],
         shippingAddress: { line1: '12 rue', city: 'Paris', postalCode: '75001' },
       });
 

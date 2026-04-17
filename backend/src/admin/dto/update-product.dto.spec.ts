@@ -6,7 +6,7 @@ describe('UpdateProductDto', () => {
   it('should accept valid product data', async () => {
     const dto = plainToInstance(UpdateProductDto, {
       name: 'Mon Produit',
-      price: 29.99,
+      price: 19.99,
       description: 'A magnetic bag',
     });
     const errors = await validate(dto);

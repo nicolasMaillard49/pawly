@@ -14,23 +14,24 @@ async function main() {
   const product = await prisma.product.upsert({
     where: { slug: 'default-product' },
     update: {
-      name: 'Mon Produit',
+      name: 'Pawly',
+      price: 19.99,
+      comparePrice: 30.00,
       images: [
         '/images/product/product-1.png',
         '/images/product/product-2.png',
         '/images/product/product-3.png',
         '/images/product/product-4.png',
         '/images/product/product-5.png',
-        '/images/product/product-6.png',
       ],
     },
     create: {
-      name: 'Mon Produit',
+      name: 'Pawly',
       slug: 'default-product',
       description:
-        'Description du produit principal. Modifiez ce texte pour decrire votre produit.',
-      price: 29.99,
-      comparePrice: 49.99,
+        'Pawly est la douchette à pattes conçue pour les animaux de compagnie. Un pommeau de douche qui se branche en 5 secondes pour laver les pattes de votre chien ou chat.',
+      price: 19.99,
+      comparePrice: 30.00,
       costPrice: 0,
       images: [
         '/images/product/product-1.png',
@@ -38,7 +39,6 @@ async function main() {
         '/images/product/product-3.png',
         '/images/product/product-4.png',
         '/images/product/product-5.png',
-        '/images/product/product-6.png',
       ],
       variants: {
         colors: [

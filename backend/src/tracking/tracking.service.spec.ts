@@ -20,7 +20,7 @@ describe('TrackingService', () => {
     items: [
       {
         quantity: 2,
-        price: 29.99,
+        price: 19.99,
         product: { name: 'Test Product' },
       },
     ],
@@ -64,7 +64,7 @@ describe('TrackingService', () => {
       createdAt: mockOrder.createdAt,
       trackingNumber: 'TRK123',
       trackingUrl: 'https://tracking.example.com/TRK123',
-      items: [{ name: 'Test Product', quantity: 2, price: 29.99 }],
+      items: [{ name: 'Test Product', quantity: 2, price: 19.99 }],
     });
   });
 

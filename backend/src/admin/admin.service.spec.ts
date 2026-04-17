@@ -55,8 +55,8 @@ describe('AdminService', () => {
       prisma.order.aggregate.mockResolvedValue({ _sum: { total: 1500.5 } });
       prisma.order.findMany
         .mockResolvedValueOnce([{ id: 'order-1' }]) // recentOrders
-        .mockResolvedValueOnce([{ id: 'monthly-1', total: 29.99, items: [{ quantity: 1 }] }]); // monthlyOrders
-      prisma.product.findFirst.mockResolvedValue({ id: 'prod-1', costPrice: 12, price: 29.99 });
+        .mockResolvedValueOnce([{ id: 'monthly-1', total: 19.99, items: [{ quantity: 1 }] }]); // monthlyOrders
+      prisma.product.findFirst.mockResolvedValue({ id: 'prod-1', costPrice: 12, price: 19.99 });
 
       const result = await service.getDashboard();
 
@@ -66,12 +66,12 @@ describe('AdminService', () => {
         totalRevenue: 1500.5,
         recentOrders: [{ id: 'order-1' }],
         monthly: {
-          revenue: 29.99,
+          revenue: 19.99,
           orderCount: 1,
           unitsSold: 1,
         },
         productCostPrice: 12,
-        productPrice: 29.99,
+        productPrice: 19.99,
       });
     });
 
@@ -220,15 +220,15 @@ describe('AdminService', () => {
       prisma.order.findMany
         .mockResolvedValueOnce([]) // recentOrders
         .mockResolvedValueOnce([
-          { id: 'm1', total: 29.99, items: [{ quantity: 1 }] },
+          { id: 'm1', total: 19.99, items: [{ quantity: 1 }] },
           { id: 'm2', total: 49.99, items: [{ quantity: 2 }] },
           { id: 'm3', total: 99.99, items: [{ quantity: 5 }, { quantity: 1 }] },
         ]); // monthlyOrders
-      prisma.product.findFirst.mockResolvedValue({ costPrice: 12, price: 29.99 });
+      prisma.product.findFirst.mockResolvedValue({ costPrice: 12, price: 19.99 });
 
       const result = await service.getDashboard();
 
-      expect(result.monthly.revenue).toBeCloseTo(179.97, 2);
+      expect(result.monthly.revenue).toBeCloseTo(169.97, 2);
       expect(result.monthly.orderCount).toBe(3);
       expect(result.monthly.unitsSold).toBe(9); // 1 + 2 + 5 + 1
     });
