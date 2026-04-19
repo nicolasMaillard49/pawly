@@ -140,7 +140,7 @@ export const storeConfig: StoreConfig = {
   // ANALYTICS
   // ═══════════════════════════════════
   analytics: {
-    metaPixelId: '',
+    metaPixelId: '2332685923933601',
     ga4Id: 'G-5M9HD7DW7C',
   },
 
